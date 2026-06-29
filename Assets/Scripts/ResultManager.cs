@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro; // 引入 TMP 命名空间 / Required for modifying button text
 
 public class ResultScreenManager : MonoBehaviour
 {
@@ -7,41 +7,43 @@ public class ResultScreenManager : MonoBehaviour
     public GameObject winTextObject;  
     public GameObject loseTextObject; 
 
+    [Header("Button Text References")]
+    // 拖入你左边“重来”按钮下的 Text 组建 / Text component of the restart button
+    public TextMeshProUGUI restartButtonText; 
+    // 拖入你右边“退出”按钮下的 Text 组件 / Text component of the quit button
+    public TextMeshProUGUI quitButtonText;    
+
     void Start()
     {
-        // 保持之前的胜负判定显示逻辑
         if (GameManager.isVictory)
         {
+            // 1. 显示胜利文字 / Show Victory text
             if (winTextObject != null) winTextObject.SetActive(true);
             if (loseTextObject != null) loseTextObject.SetActive(false);
+
+            // 2. 动态修改通关时的按钮文案（这里以方案 A 为例）
+            // Dynamically change button texts for Victory state
+            if (restartButtonText != null) restartButtonText.text = "Go to the next fucking challenge.";
+            if (quitButtonText != null) quitButtonText.text = "Fuck you, I'm out";
         }
         else
         {
+            // 1. 显示失败文字 / Show Loss text
             if (winTextObject != null) winTextObject.SetActive(false);
             if (loseTextObject != null) loseTextObject.SetActive(true);
+
+            // 2. 恢复失败时的经典文案
+            // Restore classic button texts for Loss state
+            if (restartButtonText != null) restartButtonText.text = "Suck it up and try again.";
+            if (quitButtonText != null) quitButtonText.text = "Fuck you, I quit";
         }
     }
 
-    // 选项一：重来一局（绑定到重来按钮）
-    // Option 1: Restart the game (Bound to Restart Button)
-    public void RestartGame()
-    {
-        Debug.Log("重来一局，再次复仇！");
-        SceneManager.LoadScene("GameplayScene");
-    }
-
-    // 选项二：掀桌退出（绑定到 Fuck you, I quit 按钮）
-    // Option 2: Quit the game (Bound to Quit Button)
-    public void QuitGame()
-    {
-        Debug.Log("Fuck you, I quit! 正在退出游戏...");
-
-        // 1. 如果是在 Unity 编辑器里运行，点击时停止播放 / If running in Unity Editor, stop playing
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-        #endif
-
-        // 2. 如果是在手机端或打包后的包体运行，直接关闭程序 / If running on mobile or build, close the app
-        Application.Quit();
+    public void RestartGame() { UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene"); }
+    public void QuitGame() { 
+    #if UNITY_EDITOR 
+        UnityEditor.EditorApplication.isPlaying = false; 
+    #endif 
+        Application.Quit(); 
     }
 }

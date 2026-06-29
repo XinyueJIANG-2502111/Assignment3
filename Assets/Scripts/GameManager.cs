@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -53,7 +55,8 @@ public class GameManager : MonoBehaviour
         {
             float randomX = Random.Range(-spawnRangeX, spawnRangeX);
             Vector3 spawnPos = new Vector3(randomX, spawnHeightY, 0);
-            Instantiate(blockPrefab, spawnPos, Quaternion.identity);
+            //Instantiate(blockPrefab, spawnPos, Quaternion.identity);
+            SpawnWord();
             
             // 可以根据需要调整下落频率 / Adjust spawn speed as needed
             yield return new WaitForSeconds(0.8f); 
@@ -116,7 +119,7 @@ public class GameManager : MonoBehaviour
                 
                 // 这里以后可以用来触发连击加分、播放音效等
                 // This can be used for combo counter, SFX, etc. later
-                Debug.Log("精准消灭高速方块！");
+                //Debug.Log("精准消灭高速方块！");
             }
         }
     }
@@ -141,19 +144,92 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
 
         isVictory = won;
-        Debug.Log(won ? "【胜利】坚持了30秒！" : "【失败】方块触顶了！");
+        //Debug.Log(won ? "【胜利】坚持了30秒！" : "【失败】方块触顶了！");
 
         // 跳转到结算场景 / Load Result Scene
-        //SceneManager.LoadScene("ResultScene");
+        SceneManager.LoadScene("ResultScene");
     }
 
-    // 把原先的 Start() 删掉或者改名 / Change the old Start() to a public method
-    /* public void StartSpawning()
+    // [Header("Universal Trash Pool")]
+    // public List<string> everythingTrashPool = new List<string>()
+    // {
+    //     // "Fucking Assignment", "Fucking Rules", "Fucking Cubes", 
+    //     // "Fucking Unreal", "Fucking Unity", "Fucking Godot", 
+    //     // "Fucking C++", "Fucking Bugs", 
+    //     // "Fucking Physics", "Fucking arXiv", "Fucking LaTeX", "Fucking Boss", "Fucking Papers",
+    //     // "Fucking Vulkan", "Fucking DirectX", "Fucking OpenGL"
+    // };
+
+    [Header("Data Source")]
+    // 拖入你刚刚创建的 WordPoolAsset 资产文件 / Drag your WordPoolAsset here
+    public WordPoolAsset wordPoolSource;
+
+    // 运行时的“抽卡包” / The runtime dynamic spawning bag
+    private List<string> runtimeSpawnBag = new List<string>();
+
+    string GetNextWord()
     {
-        // 初始化屏幕边界 / Initialize boundaries
-        CalculateScreenBoundaries(); 
-    
-        // 启动生成方块的协程 / Start spawning coroutine
-        StartCoroutine(SpawnRoutine());
-    } */
+        // 安全检查：如果忘记拖入资产，返回一个保底词
+        // Safety check: if asset is missing, return a fallback word
+        if (wordPoolSource == null || wordPoolSource.everythingTrashPool.Count == 0)
+        {
+            Debug.LogError("【错误】GameManager 身上没有挂载词库资产！/ WordPoolAsset is missing!");
+            return "Missing Word Asset";
+        }
+
+        // 如果包空了，从资产文件中复制一份放进去，并重新洗牌
+        // If the bag is empty, refill it from the asset pool and shuffle
+        if (runtimeSpawnBag.Count == 0)
+        {
+            runtimeSpawnBag.AddRange(wordPoolSource.everythingTrashPool);
+            ShuffleBag(runtimeSpawnBag);
+            Debug.Log("<color=cyan>【系统】词库抽空，已重新从资产洗牌！</color>");
+        }
+
+        int lastIndex = runtimeSpawnBag.Count - 1;
+        string chosenWord = runtimeSpawnBag[lastIndex];
+        runtimeSpawnBag.RemoveAt(lastIndex);
+
+        return chosenWord;
+    }
+
+    void SpawnWord()
+    {
+        if (blockPrefab == null || wordPoolSource.everythingTrashPool.Count == 0) return;
+
+        float randomX = Random.Range(-spawnRangeX, spawnRangeX);
+        Vector3 spawnPosition = new Vector3(randomX, spawnHeightY, 0);
+
+        // 实例化自适应方块 / Instantiate the adaptive block
+        GameObject newBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity);
+
+        // 随机抽一个精神垃圾 / Pick a random spiritual trash
+        string randomTrash = GetNextWord();
+
+        // 调用 Setup 函数，方块会自动根据字数长短变长或变短！
+        // Call Setup, the block will automatically resize based on word length!
+        DynamicWordBlock script = newBlock.GetComponent<DynamicWordBlock>();
+        if (script != null)
+        {
+            script.Setup(randomTrash);
+        }
+    }
+
+    // 经典费舍尔-耶茨洗牌算法 / Classic Fisher-Yates Shuffle Algorithm
+    // 这是一个原汁原味的 C# 数组/列表打乱算法，常用于游戏开发中的卡组洗牌
+    void ShuffleBag(List<string> list)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            // 随机挑选一个索引 / Pick a random index
+            int k = Random.Range(0, n + 1);
+        
+            // 交换两个元素的位置 / Swap the two elements
+            string value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+    }
 }
