@@ -5,7 +5,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("UI System")]
+    public GameUIManager uiManager;
+    private int score; 
+    // 【新增】为了方便 UI 读取，把最大允许方块数也移到 GameManager 里来统一管理
+    // [New] Manage max allowed blocks here for global reference
+    public int maxAllowedBlocks = 15;
+
     public static bool isVictory = false;
+    float minHeightY;
+    float maxHeightY;
 
     // 在 Inspector 中拖入刚才制作的方块预制件
     // Drag and drop the block prefab into this slot via Inspector
@@ -23,6 +32,7 @@ public class GameManager : MonoBehaviour
     // The Y-axis height for spawning (above the visible screen)
     public float spawnHeightY = 6.0f;
 
+
     [Header("Other Settings")]
     // 游戏总时长（秒） / Total game duration (in seconds)
     public float gameDuration = 30f; 
@@ -31,18 +41,46 @@ public class GameManager : MonoBehaviour
     // 游戏是否已经结束的标志 / Flag to check if game is already over
     private bool isGameOver = false; 
 
+
+    [Header("Input Optimization")]
+    // 点击判定增加的额外半径（单位：米），数值越大越容易点中
+    // Extra radius added to the click detection (in units). Higher = easier to click.
+    public float clickBufferRadius = 0.3f; 
+
+
+    [Header("Data Source")]
+    // 拖入你刚刚创建的 WordPoolAsset 资产文件 / Drag your WordPoolAsset here
+    public WordPoolAsset wordPoolSource;
+
+    // 运行时的“抽卡包” / The runtime dynamic spawning bag
+    private List<string> runtimeSpawnBag = new List<string>();
+
+
     void Start()
     {
         // 初始化自适应边界 / Initialize adaptive boundaries
         Camera mainCam = Camera.main;
         Vector3 topRight = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-        spawnRangeX = topRight.x - 0.5f; 
-        spawnHeightY = topRight.y + 1.0f; 
+        Vector3 bottomLeft = mainCam.ScreenToWorldPoint(new Vector3(0, 0, 0));
+
+        // 稍微往内缩一点，防止方块卡出屏幕外
+        spawnRangeX = topRight.x - 1.0f; 
+        // 新增一个变量或者直接在这里用：
+        // 允许生成的 Y 轴范围变成整个屏幕高度
+        minHeightY = bottomLeft.y + 1.0f;
+        maxHeightY = topRight.y - 1.0f; 
 
         // 初始化游戏状态 / Initialize game state
         timeRemaining = gameDuration;
         isGameOver = false;
         isVictory = false;
+        score = 0;
+
+        if (uiManager != null)
+        {
+            uiManager.InitUI(gameDuration, maxAllowedBlocks);
+        }
+
         // 开启循环生成协程
         // Start the loop spawning coroutine
         StartCoroutine(SpawnRoutine());
@@ -63,22 +101,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [Header("Input Optimization")]
-    // 点击判定增加的额外半径（单位：米），数值越大越容易点中
-    // Extra radius added to the click detection (in units). Higher = easier to click.
-    public float clickBufferRadius = 0.3f; 
-
     void Update()
     {
         if (isGameOver) return;
+        if (Time.timeScale == 0f) return;
 
         // 倒计时逻辑 / Countdown logic
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
-            
-            // (可选) 你可以在这里把时间印在 UI 文本上，比如：
-            // timerText.text = Mathf.CeilToInt(timeRemaining).ToString();
+            if (uiManager != null) uiManager.UpdateTimer(timeRemaining);
         }
         else
         {
@@ -93,6 +125,15 @@ public class GameManager : MonoBehaviour
         {
             HandleClick(Input.mousePosition);
         }
+
+        // Constantly sync live block count to UI
+        int liveBlocks = FindObjectsOfType<DynamicWordBlock>().Length;
+        if (uiManager != null)
+        {
+            uiManager.UpdateTrashCount(liveBlocks, maxAllowedBlocks);
+        }
+
+        Debug.Log(score);
     }
 
     void HandleClick(Vector3 screenPosition)
@@ -110,13 +151,17 @@ public class GameManager : MonoBehaviour
         {
             // 确保点中的是我们想要消除的方块
             // Ensure the hit object is our target block
-            BaseBlock block = hitCollider.GetComponent<BaseBlock>();
+            DynamicWordBlock block = hitCollider.GetComponent<DynamicWordBlock>();
             if (block != null)
             {
+                // 【新增】击碎方块，加分，并同步给 UI！
+                score++;
+                if (uiManager != null) uiManager.UpdateScore(score);
+
                 // 触发消除逻辑
                 // Trigger the destruction logic
                 Destroy(block.gameObject);
-                
+
                 // 这里以后可以用来触发连击加分、播放音效等
                 // This can be used for combo counter, SFX, etc. later
                 //Debug.Log("精准消灭高速方块！");
@@ -150,23 +195,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("ResultScene");
     }
 
-    // [Header("Universal Trash Pool")]
-    // public List<string> everythingTrashPool = new List<string>()
-    // {
-    //     // "Fucking Assignment", "Fucking Rules", "Fucking Cubes", 
-    //     // "Fucking Unreal", "Fucking Unity", "Fucking Godot", 
-    //     // "Fucking C++", "Fucking Bugs", 
-    //     // "Fucking Physics", "Fucking arXiv", "Fucking LaTeX", "Fucking Boss", "Fucking Papers",
-    //     // "Fucking Vulkan", "Fucking DirectX", "Fucking OpenGL"
-    // };
-
-    [Header("Data Source")]
-    // 拖入你刚刚创建的 WordPoolAsset 资产文件 / Drag your WordPoolAsset here
-    public WordPoolAsset wordPoolSource;
-
-    // 运行时的“抽卡包” / The runtime dynamic spawning bag
-    private List<string> runtimeSpawnBag = new List<string>();
-
+    
     string GetNextWord()
     {
         // 安全检查：如果忘记拖入资产，返回一个保底词
@@ -198,7 +227,11 @@ public class GameManager : MonoBehaviour
         if (blockPrefab == null || wordPoolSource.everythingTrashPool.Count == 0) return;
 
         float randomX = Random.Range(-spawnRangeX, spawnRangeX);
-        Vector3 spawnPosition = new Vector3(randomX, spawnHeightY, 0);
+        float randomY = Random.Range(minHeightY, maxHeightY); // 全屏幕随机 Y 轴
+        Vector3 spawnPosition = new Vector3(randomX, randomY, 0);
+
+        //float randomX = Random.Range(-spawnRangeX, spawnRangeX);
+        //Vector3 spawnPosition = new Vector3(randomX, spawnHeightY, 0);
 
         // 实例化自适应方块 / Instantiate the adaptive block
         GameObject newBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity);
