@@ -288,7 +288,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 0}
+  m_BackGroundColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back to the fucking title.
+  m_text: Back to the fuckin' title.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1783,7 +1783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back to this fucking game.
+  m_text: Back to this fuckin' game.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1894,7 +1894,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1821068673
@@ -1917,7 +1917,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pause
+  m_text: '||'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1944,13 +1944,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 73.44
+  m_fontSizeBase: 73.44
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2175,11 +2175,25 @@ MonoBehaviour:
   maxAllowedBlocks: 15
   blockPrefab: {fileID: 6754349648705263384, guid: c119ce123a507de47881a03d8d96c322, type: 3}
   spawnInterval: 1
-  spawnRangeX: 2
-  spawnHeightY: 6
   gameDuration: 30
   clickBufferRadius: 0.3
-  wordPoolSource: {fileID: 11400000, guid: 8ea56215e42bb9d4a96f9c41736b078b, type: 2}
+  iconPool:
+  - {fileID: 21300000, guid: 63c7a9e27b8be5e40afaf45184b400ee, type: 3}
+  - {fileID: 21300000, guid: bfe8e16489d0bcb45aac89a2cbb46eb2, type: 3}
+  - {fileID: 21300000, guid: fb86599c33cbf014f8d27ac7a5917484, type: 3}
+  - {fileID: 21300000, guid: 9e9aa1db00f980b4fb32b864657e26a2, type: 3}
+  - {fileID: 21300000, guid: 03336dab6b9eb6d4ab56d6f5f5b88e77, type: 3}
+  - {fileID: 21300000, guid: 61fc5998d0ff29c4e9222b1fe83d78ee, type: 3}
+  - {fileID: 21300000, guid: 96c38827093d82c47b6407a4231d9e1f, type: 3}
+  - {fileID: 21300000, guid: 4c6f108bd3e1bcf48b70686117dc23eb, type: 3}
+  - {fileID: 21300000, guid: 5113bd65c6a29c444b11583c6c72353d, type: 3}
+  - {fileID: 21300000, guid: 3675335aea8c98c4dac401c273f039b8, type: 3}
+  - {fileID: 21300000, guid: 2e7bbef8471118548bd34cfd753f1b95, type: 3}
+  - {fileID: 21300000, guid: 2be418c2561b8ad4689366ccd5653720, type: 3}
+  - {fileID: 21300000, guid: 29e3a5143c01d594c86978445a33a81c, type: 3}
+  - {fileID: 21300000, guid: 0b129e943b7d8d5458470b9b7bb202df, type: 3}
+  - {fileID: 21300000, guid: f1fb917e176e0cc49b1935004bcaed3b, type: 3}
+  - {fileID: 21300000, guid: f87cf0a85181d0d44a9ab7a3ca00a30f, type: 3}
 --- !u!1 &2089935227
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,7 +2251,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Restart this piece of shit.
+  m_text: Restart this shit.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

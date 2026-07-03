@@ -1,107 +1,103 @@
-using UnityEngine;
-using TMPro; // 必须引入 TMP 命名空间 / Required for TextMeshPro
+// using UnityEngine;
+// using System.Collections;
 
-public class DynamicWordBlock : MonoBehaviour
-{
-    private GameManager gameManager;
+// public class DynamicIconBlock : MonoBehaviour
+// {
+//     private SpriteRenderer spriteRenderer;
+//     private MaterialPropertyBlock propBlock;
+//     private bool isBlasting = false;
 
-    [Header("References")]
-    public TextMeshPro textComponent;      // 拖入子物体的 TMP 组件 / Child TMP component
-    public SpriteRenderer backgroundSprite; // 拖入子物体的 Square 精灵 / Child SpriteRenderer
+//     public float blastDuration = 0.25f; 
 
-    [Header("Sizing Adjustments")]
-    // 文字两边的留白缓冲，防止太挤 / Extra padding on left and right sides
-    public float paddingX = 0.3f;
-    // 方块的固定高度 / Fixed height of the block
-    public float blockHeight = 1.0f;
+//     [Header("Sand Physics FX")]
+//     // 在 Inspector 里把刚刚做好的 SandBlastParticle 预制件拖到这里
+//     // Drag your SandBlastParticle prefab here via the Inspector
+//     public GameObject sandParticlePrefab; 
 
-    private BoxCollider2D boxCollider;
+//     void Awake()
+//     {
+//         spriteRenderer = GetComponent<SpriteRenderer>();
+//         propBlock = new MaterialPropertyBlock();
+//     }
 
-    void Awake()
-    {
-        boxCollider = GetComponent<BoxCollider2D>();
-        gameManager = FindObjectOfType<GameManager>();
-    }
+//     public void Setup(Sprite iconSprite, Color neonColor)
+//     {
+//         if (spriteRenderer != null)
+//         {
+//             spriteRenderer.sprite = iconSprite;
+//             spriteRenderer.GetPropertyBlock(propBlock);
+//             propBlock.SetColor("_Color", neonColor);
+//             propBlock.SetFloat("_Progress", 0f);
+//             spriteRenderer.SetPropertyBlock(propBlock);
+//         }
+//     }
 
-    void Start()
-    {
-        // 【核心修改】一出生，就检查场上是不是垃圾太多了
-        // [Core Change] Upon spawning, check if there's too much trash on screen
-        CheckScreenOverload();
-    }
+//     public void TriggerClickBlast()
+//     {
+//         if (isBlasting) return;
+//         isBlasting = true;
 
-    // 检查屏幕是否过载 / Check if the screen has too many blocks
-    private void CheckScreenOverload()
-    {
-        // 寻找场景中所有挂载了当前脚本的方块数量
-        // Find how many blocks currently exist in the scene
-        int currentBlockCount = FindObjectsOfType<DynamicWordBlock>().Length;
+//         Collider2D col = GetComponent<Collider2D>();
+//         if (col != null) col.enabled = false;
 
-        // Debug.Log($"当前垃圾数量: {currentBlockCount} / {maxAllowedBlocks}");
+//         // 【核心新增】在自毁前，释放物理飞砂！
+//         // [Core New] Spawn physical sand explosion before destruction
+//         SpawnSandExplosion();
 
-        // 如果超过了最大允许数量，触发游戏失败！
-        // If count exceeds max allowed, trigger game over
-        if (currentBlockCount > gameManager.maxAllowedBlocks)
-        {
-            if (gameManager != null)
-            {
-                gameManager.TriggerGameOver(false);
-            }
-        }
-    }
+//         StartCoroutine(BlastRoutine());
+//     }
 
-    // 初始化方块文本，并动态调整大小
-    public void Setup(string textContent)
-    {
-        if (textComponent == null || backgroundSprite == null || boxCollider == null) return;
+//     void SpawnSandExplosion()
+//     {
+//         if (sandParticlePrefab == null || spriteRenderer == null) return;
 
-        // 1. 赋值文字
-        textComponent.text = textContent;
+//         // 1. 在当前方块的中心点生成粒子系统
+//         // Spawn particle at current block position
+//         GameObject particleObj = Instantiate(sandParticlePrefab, transform.position, Quaternion.identity);
+//         ParticleSystem ps = particleObj.GetComponent<ParticleSystem>();
 
-        // 随机字号
-        textComponent.fontSize = Random.Range(2f, 6f);
+//         if (ps != null)
+//         {
+//             // 2. 动态提取当前图标的纹理，注入粒子的 Texture Sheet / Shape 模块
+//             // Dynamic texture injection into the particle emitter
+//             var textureModule = ps.textureSheetAnimation;
+//             textureModule.enabled = true;
+//             textureModule.mode = ParticleSystemAnimationMode.Sprites;
+//             // 强行把当前图标的 Sprite 塞进去，让碎屑长得和图标一模一样
+//             textureModule.AddSprite(spriteRenderer.sprite); 
 
-        // 强制 TextMeshPro 立即计算文字的网格和实际渲染宽高
-        textComponent.ForceMeshUpdate();
+//             // 3. 动态提取当前的霓虹色彩，注入粒子的初始颜色
+//             // Inherit the exact neon color from the parent icon
+//             var mainModule = ps.main;
+            
+//             // 获取当前 PropertyBlock 里的颜色
+//             spriteRenderer.GetPropertyBlock(propBlock);
+//             Color currentNeonColor = propBlock.GetColor("_Color");
+            
+//             // 赋予粒子，并保持超高强度的自发光色
+//             mainModule.startColor = new ParticleSystem.MinMaxGradient(currentNeonColor);
 
-        // 2. 获取文字实际渲染的世界宽度
-        float textWidth = textComponent.renderedWidth;
+//             // 4. 彻底引爆！
+//             ps.Play();
+//         }
+//     }
 
-        // 随机留白
-        float currentPaddingX = Random.Range(0.3f, 1.2f); 
+//     IEnumerator BlastRoutine()
+//     {
+//         float elapsed = 0f;
+//         while (elapsed < blastDuration)
+//         {
+//             elapsed += Time.deltaTime;
+//             float progress = Mathf.Clamp01(elapsed / blastDuration);
 
-        // 根据字号动态算出高度
-        float finalHeight = textComponent.bounds.size.y + 0.4f;
-
-        // 3. 计算最终方块应该具备的宽度
-        float finalWidth = textWidth + currentPaddingX;
-
-        // 4. 动态调整背景精灵的缩放
-        backgroundSprite.transform.localScale = new Vector3(finalWidth, blockHeight, 1f);
-
-        // 5. 动态调整物理碰撞盒的大小
-        boxCollider.size = new Vector2(finalWidth, blockHeight);
-
-        // 【新增】给方块材质赋予随机的霓虹发光色
-        // [New] Assign random neon colors to the sprite material
-        if (backgroundSprite != null)
-        {
-            // 创建一个随机的高饱和度霓虹色 / Generate a random vivid neon color
-            Color randomNeonColor = Color.HSVToRGB(Random.Range(0f, 1f), 0.8f, 1f);
-    
-            // 改变方块本身的底色（这里用稍微暗一点的颜色衬托发光）
-            backgroundSprite.color = randomNeonColor * 0.4f; 
-    
-            // 通过 MaterialPropertyBlock 或者直接修改 Material 改变 Shader 的发光颜色
-            // 修改我们在 Shader 里定义的 "_GlowColor" 属性
-            backgroundSprite.material.SetColor("_GlowColor", randomNeonColor);
-        }
-    }
-
-    // 基础点击消除
-    // private void OnMouseDown()
-    // {
-    //     // TODO: 触发爆炸粒子
-    //     Destroy(gameObject);
-    // }
-}
+//             if (spriteRenderer != null)
+//             {
+//                 spriteRenderer.GetPropertyBlock(propBlock);
+//                 propBlock.SetFloat("_Progress", progress);
+//                 spriteRenderer.SetPropertyBlock(propBlock);
+//             }
+//             yield return null;
+//         }
+//         Destroy(gameObject);
+//     }
+// }

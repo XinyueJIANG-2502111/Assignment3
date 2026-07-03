@@ -37,6 +37,7 @@ public class GameUIManager : MonoBehaviour
         if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
         totalGameDuration = totalTime; // 记录总时间 / Record total time
+        timerCircleImage.color = Color.green;
     }
 
     // 更新倒计时显示 / Update the timer display
@@ -67,7 +68,7 @@ public class GameUIManager : MonoBehaviour
             }
             else
             {
-                timerCircleImage.color = Color.white; // 正常时间颜色 / Normal color
+                timerCircleImage.color = Color.green; // 正常时间颜色 / Normal color
             }
         }
     }

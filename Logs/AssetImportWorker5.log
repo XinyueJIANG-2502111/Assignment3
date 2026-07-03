@@ -1,0 +1,1169 @@
+Using pre-set license
+Built from '2022.3/respin/2022.3.62f2-4af31df585-v2' branch; Version is '2022.3.62f3 (96770f904ca7) revision 9860879'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) 64bit Professional' Language: 'ja' Physical Memory: 32456 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker5
+-projectPath
+D:/FuckingAssholeProject/NewTapGame
+-logFile
+Logs/AssetImportWorker5.log
+-srvPort
+56273
+Successfully changed project path to: D:/FuckingAssholeProject/NewTapGame
+D:/FuckingAssholeProject/NewTapGame
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [114284]  Target information:
+
+Player connection [114284]  * "[IP] 10.204.6.82 [Port] 0 [Flags] 2 [Guid] 1908971854 [EditorId] 1908971854 [Version] 1048832 [Id] WindowsEditor(7,tic24034115) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [114284] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [114284] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+Refreshing native plugins compatible for Editor in 9.98 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.62f3 (96770f904ca7)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/FuckingAssholeProject/NewTapGame/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3070 (ID=0x2488)
+    Vendor:   NVIDIA
+    VRAM:     8018 MB
+    Driver:   32.0.15.9597
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56824
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.62f3/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.023383 seconds.
+- Loaded All Assemblies, in  0.273 seconds
+Native extension for WindowsStandalone target not found
+[usbmuxd] Start listen thread
+[usbmuxd] Listen thread started
+Native extension for iOS target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 243 ms
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.472 seconds
+Domain Reload Profiling: 743ms
+	BeginReloadAssembly (76ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (64ms)
+	LoadAllAssembliesAndSetupDomain (98ms)
+		LoadAssemblies (75ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (96ms)
+			TypeCache.Refresh (95ms)
+				TypeCache.ScanAssembly (86ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (472ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (439ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (317ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (84ms)
+			ProcessInitializeOnLoadMethodAttributes (33ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.502 seconds
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.477 seconds
+Domain Reload Profiling: 978ms
+	BeginReloadAssembly (105ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (14ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (35ms)
+	LoadAllAssembliesAndSetupDomain (331ms)
+		LoadAssemblies (254ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (139ms)
+			TypeCache.Refresh (117ms)
+				TypeCache.ScanAssembly (105ms)
+			ScanForSourceGeneratedMonoScriptInfo (16ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (478ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (366ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (30ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (51ms)
+			ProcessInitializeOnLoadAttributes (239ms)
+			ProcessInitializeOnLoadMethodAttributes (33ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 4.23 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4411 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 41 unused Assets / (244.0 KB). Loaded Objects now: 4876.
+Memory consumption went from 156.8 MB to 156.6 MB.
+Total: 3.856600 ms (FindLiveObjects: 0.208400 ms CreateObjectMapping: 0.093700 ms MarkObjects: 3.395800 ms  DeleteObjects: 0.157800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1876686.116070 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/dark-ore-64.png
+  artifactKey: Guid(9c617cb5d2708714c8d0a5da65fe4084) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/dark-ore-64.png using Guid(9c617cb5d2708714c8d0a5da65fe4084) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '698b93125e2912622af2e5bfc96a613a') in 0.088369 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.158134 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/drill-128.png
+  artifactKey: Guid(6794d7c0da4a6d44b8521a172053c95f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/drill-128.png using Guid(6794d7c0da4a6d44b8521a172053c95f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '60971a0ffee882d007df7cd2c51489a3') in 0.021906 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.192683 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/earth-512.png
+  artifactKey: Guid(4294fb30134bec243928bd7699231849) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/earth-512.png using Guid(4294fb30134bec243928bd7699231849) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '85e24150cb73433eb6e29aac66bde6c9') in 0.017970 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.206189 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/exoplanet-2-64.png
+  artifactKey: Guid(0b546e26cf91b5b44b378842de1d4fd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/exoplanet-2-64.png using Guid(0b546e26cf91b5b44b378842de1d4fd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '2beefc3bf077d056684761144c64ec54') in 0.015426 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.229975 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/exoplanet-4-512.png
+  artifactKey: Guid(d9f72ddd344e6334e9c70a5d909aff7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/exoplanet-4-512.png using Guid(d9f72ddd344e6334e9c70a5d909aff7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '898aced40e37e1354192b748dc36780b') in 0.017942 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.175714 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/exoplanet-6-128.png
+  artifactKey: Guid(a05b66a817f4edb4e9ab8ffea6e2ad27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/exoplanet-6-128.png using Guid(a05b66a817f4edb4e9ab8ffea6e2ad27) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'b745a3a3231eb9a26446c2df7802acf7') in 0.017726 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.007935 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/full-moon-128.png
+  artifactKey: Guid(3050a53ed98f2b141b5bcdf02f4d4d9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/full-moon-128.png using Guid(3050a53ed98f2b141b5bcdf02f4d4d9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '64cea57fa701c7e8eab2e85d1eefd508') in 0.017778 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 1.360581 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/gift-128.png
+  artifactKey: Guid(bd128283a1b82714e997aec93e6e444d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/gift-128.png using Guid(bd128283a1b82714e997aec93e6e444d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '97c54035ebbda9892db56782d17a5075') in 0.019507 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/gold-ore-128.png
+  artifactKey: Guid(5c5a33eafa2db004b85725a407684ab6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/gold-ore-128.png using Guid(5c5a33eafa2db004b85725a407684ab6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '03250fe42043e4267f2fe8a84450e1f0') in 0.021882 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/gun-64.png
+  artifactKey: Guid(7bf95b85ca7df8c4abf5041614743a61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/gun-64.png using Guid(7bf95b85ca7df8c4abf5041614743a61) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '6b89a40e3c57b8e94412617e13c8e093') in 0.024975 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/home-64.png
+  artifactKey: Guid(e67b9584f60bfef4f871d5cad7c8dd75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/home-64.png using Guid(e67b9584f60bfef4f871d5cad7c8dd75) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '24f2dec65b09f084c24fa957baf2204f') in 0.019570 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/inventory-64.png
+  artifactKey: Guid(af99bdcf3f098da44bea7d326c977409) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/inventory-64.png using Guid(af99bdcf3f098da44bea7d326c977409) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '5f274819460484a582bcbe0365ee8123') in 0.019088 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/key-1-64.png
+  artifactKey: Guid(3db273939103f16429dc75ae5cba09fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/key-1-64.png using Guid(3db273939103f16429dc75ae5cba09fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '8520ef4e5b1fbe1b4461db64d9ff8499') in 0.027536 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/lock-1-512.png
+  artifactKey: Guid(f3ea141e680365a438453c6cc0783661) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/lock-1-512.png using Guid(f3ea141e680365a438453c6cc0783661) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'bb4038b5be07a7e06a9ac3b3a2df3c83') in 0.018602 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/heart-256.png
+  artifactKey: Guid(90dd6238096f3ff4f95d1f9f1df609cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/heart-256.png using Guid(90dd6238096f3ff4f95d1f9f1df609cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '38aee97c16e6c332a769db6d93f2b9b8') in 0.018825 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/key-2-128.png
+  artifactKey: Guid(859fef8728b5b9743a68f7df33687cf4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/key-2-128.png using Guid(859fef8728b5b9743a68f7df33687cf4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '9959658e45f7e573a72e185a4cfe375e') in 0.019452 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/magnifying-glass-64.png
+  artifactKey: Guid(c83c11e8f55b8e6488238f02b50dd014) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/magnifying-glass-64.png using Guid(c83c11e8f55b8e6488238f02b50dd014) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'cd9c6eeac7bc67aae044ac396fa46c6c') in 0.021147 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/lock-2-256.png
+  artifactKey: Guid(cd2a2d01c7c62814fa97208aaf905a24) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/lock-2-256.png using Guid(cd2a2d01c7c62814fa97208aaf905a24) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'd2cafad78060f2d2910083229291623e') in 0.020065 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/mail-256.png
+  artifactKey: Guid(5844bd7aa68f70c418bee7622c60786f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/mail-256.png using Guid(5844bd7aa68f70c418bee7622c60786f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '177f62ffa1ef8fbad3c2dcc18135136c') in 0.016453 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.010483 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/mars-64.png
+  artifactKey: Guid(63db5ba253b371f4c88e3443aae20045) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/mars-64.png using Guid(63db5ba253b371f4c88e3443aae20045) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '6c0dfedf5c4eb51ff849e7023e53909b') in 0.025077 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/mercury-512.png
+  artifactKey: Guid(efa80e3119a312841bf99f5d33ce5682) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/mercury-512.png using Guid(efa80e3119a312841bf99f5d33ce5682) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '566d9b93ec4120bb6af349a579f15945') in 0.016084 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/mushroom-256.png
+  artifactKey: Guid(3a2102e4dc9e2f44e9b7f33d0e4915c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/mushroom-256.png using Guid(3a2102e4dc9e2f44e9b7f33d0e4915c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '75b4c377628cf9fe8ba7fadcd701ccf8') in 0.021234 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/new-moon-64.png
+  artifactKey: Guid(0a29d891b3743324398e134c99812f3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/new-moon-64.png using Guid(0a29d891b3743324398e134c99812f3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'c3394c40843f2d3c2b7956e586f23511') in 0.015961 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.175172 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/potion-green-2-64.png
+  artifactKey: Guid(7a23a1ce21c3f284b92857a5325b6ff5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/potion-green-2-64.png using Guid(7a23a1ce21c3f284b92857a5325b6ff5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'ffaf3d6db7d06358a6ff86ea3bd535a8') in 0.018203 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.017157 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/potion-green-3-256.png
+  artifactKey: Guid(b3f6dab717559734f8a886c549f2cc52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/potion-green-3-256.png using Guid(b3f6dab717559734f8a886c549f2cc52) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '8cc4bddeecbf96ee453ef64065fa79f5') in 0.015206 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.063989 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/purple-ore-128.png
+  artifactKey: Guid(af77d38e411cd584b91cf80cb240cbb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/purple-ore-128.png using Guid(af77d38e411cd584b91cf80cb240cbb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '1b8ef18b1fb8289657dd0ffe13eb68b8') in 0.016357 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/radar-256.png
+  artifactKey: Guid(cbaa9526541c952468b12319ed5d4c3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/radar-256.png using Guid(cbaa9526541c952468b12319ed5d4c3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '8de36b8d6a730fae90bdee81ccb56681') in 0.027533 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/satellite-64.png
+  artifactKey: Guid(83918e681a1bcb747b4b653fd7046f8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/satellite-64.png using Guid(83918e681a1bcb747b4b653fd7046f8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '5e9f87dab64ee9819ab68ad04c80fe65') in 0.025085 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 2.138572 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/scroll-128.png
+  artifactKey: Guid(6b136995987f87942aa75a973f3a2309) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/scroll-128.png using Guid(6b136995987f87942aa75a973f3a2309) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '31d14fdf4ad1a760e184679097e25ee1') in 0.017402 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.016569 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/shop-512.png
+  artifactKey: Guid(18b6c9889d997f54dba5891f09ecfe04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/shop-512.png using Guid(18b6c9889d997f54dba5891f09ecfe04) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'fff3a26797f2b4123036f7ded4895063') in 0.021697 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.015031 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/skull-128.png
+  artifactKey: Guid(41c44169e9d985642945e732b27aecc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/skull-128.png using Guid(41c44169e9d985642945e732b27aecc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '28a83823adf339044e2a419e872b1c65') in 0.020027 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/solar-system-2-64.png
+  artifactKey: Guid(716d1c4162b21ce4d926a394fb5aff76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/solar-system-2-64.png using Guid(716d1c4162b21ce4d926a394fb5aff76) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '183f0b9295008dfaa21c7d5874938a71') in 0.018188 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/solar-system-2-512.png
+  artifactKey: Guid(54f22d25fadf62e469b1f81a8e05f628) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/solar-system-2-512.png using Guid(54f22d25fadf62e469b1f81a8e05f628) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '1a4415b601f601aef83b3ea278a0a7a0') in 0.017134 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.010941 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/sun-64.png
+  artifactKey: Guid(5af93d33849c57e4e8a5f54f03893c4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/sun-64.png using Guid(5af93d33849c57e4e8a5f54f03893c4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '8bf3ad7dc34a59af84cc5aba16da8709') in 0.017532 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.021911 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/sword-1-256.png
+  artifactKey: Guid(cb19ffba8db369a449318df0986d4acb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/sword-1-256.png using Guid(cb19ffba8db369a449318df0986d4acb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'd281237f85edec849954e9471f8cd0cc') in 0.017111 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.272105 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Icons/ufo-2-128.png
+  artifactKey: Guid(a1e3728f86f1d6244a297ad0f97ef5d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Icons/ufo-2-128.png using Guid(a1e3728f86f1d6244a297ad0f97ef5d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'a61d1ae9b73865b2d14ae0e5746b2276') in 0.014519 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 8.525670 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Shop_Assets/coins-tier-2-extra-large.png
+  artifactKey: Guid(d7c9987001781724fb175bfa03690a0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Shop_Assets/coins-tier-2-extra-large.png using Guid(d7c9987001781724fb175bfa03690a0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'a47a447734476d5bf92b487269421e80') in 0.102941 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Shop_Assets/gems-tier-2-small.png
+  artifactKey: Guid(89d898b03fdc4eb40832f834198b1dfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Shop_Assets/gems-tier-2-small.png using Guid(89d898b03fdc4eb40832f834198b1dfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '04070632645d3435f75ba8446bc376fd') in 0.018047 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Shop_Assets/sale-banner-small.png
+  artifactKey: Guid(deecf042cc902d041bbf4483a429412b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Shop_Assets/sale-banner-small.png using Guid(deecf042cc902d041bbf4483a429412b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '5e8fcdbb5bd9c360c58b905a867bbd4a') in 0.018076 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Shop_Assets/coins-tier-2-large.png
+  artifactKey: Guid(71942999da0f5914f84a9eb5c2d05df7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Shop_Assets/coins-tier-2-large.png using Guid(71942999da0f5914f84a9eb5c2d05df7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '642f22739c62482346a98d13a7c77ebc') in 0.016058 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Shop_Assets/coins-tier-3-small.png
+  artifactKey: Guid(2b84cb3ea019f404e8aada70ced6efec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Shop_Assets/coins-tier-3-small.png using Guid(2b84cb3ea019f404e8aada70ced6efec) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '690548bd26bbc63377bde3046a74ed92') in 0.016957 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Shop_Assets/gems-tier-1-small.png
+  artifactKey: Guid(24d660b23ba7ee94ba212acb58e2fbe1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Shop_Assets/gems-tier-1-small.png using Guid(24d660b23ba7ee94ba212acb58e2fbe1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '73a77ef601a5718faeef91c835952425') in 0.016059 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 3.911771 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/add-32.png
+  artifactKey: Guid(fd5932a3d06fbce49b0b688ec89546b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/add-32.png using Guid(fd5932a3d06fbce49b0b688ec89546b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'cdf65031793d676284765e84bbc6b857') in 0.020880 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/astronaut-32.png
+  artifactKey: Guid(82d72013693bed94bb114f263673f34e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/astronaut-32.png using Guid(82d72013693bed94bb114f263673f34e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '940e5d9e3bef736185564289d0a68e5b') in 0.016885 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/axe-64.png
+  artifactKey: Guid(405bcfc1624d71d4fa93450eef72cc69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/axe-64.png using Guid(405bcfc1624d71d4fa93450eef72cc69) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'f0577611581b4f65167c3da3bb00ec6f') in 0.019126 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/At-32.png
+  artifactKey: Guid(363ae98c343512d46b3966858e3a46c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/At-32.png using Guid(363ae98c343512d46b3966858e3a46c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '16d0e60579635f3cedf67829005bfe02') in 0.018065 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/back-32.png
+  artifactKey: Guid(631a63903cc04b848b72c2aefb979098) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/back-32.png using Guid(631a63903cc04b848b72c2aefb979098) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'ed02543942bb41305de509b30b42f608') in 0.018721 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/all-dark-purple-64.png
+  artifactKey: Guid(bde85e331ef368a4dbb753778771ca09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/all-dark-purple-64.png using Guid(bde85e331ef368a4dbb753778771ca09) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'd1dcf41477dfe03f041bcb53567bea23') in 0.017708 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/alien-256.png
+  artifactKey: Guid(7f8d93ec0f1295b49bfe4b91e361efe1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Dark_Purple/alien-256.png using Guid(7f8d93ec0f1295b49bfe4b91e361efe1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '224359981e8cdfb523f9ced05fa3db2e') in 0.018321 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 2.413396 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/add-32.png
+  artifactKey: Guid(9e580b209038c554abe436589358bc39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/add-32.png using Guid(9e580b209038c554abe436589358bc39) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '16e48d25c4d14e4268ebc2e0a6f7a3bf') in 0.123528 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/At-32.png
+  artifactKey: Guid(71313ac6510f60342b520d3e84b4a459) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/At-32.png using Guid(71313ac6510f60342b520d3e84b4a459) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '22e6fc37b2ae5cbfb7931db506aa3eb6') in 0.014846 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/astronaut-256.png
+  artifactKey: Guid(c4ae4ca02c55b8b46859611ba7c9688f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/astronaut-256.png using Guid(c4ae4ca02c55b8b46859611ba7c9688f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '2cb2a0cc32c2a01235ac812b4106f2d3') in 0.016540 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/astronaut-128.png
+  artifactKey: Guid(819f827cdd2021740bdb2554b96871bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/astronaut-128.png using Guid(819f827cdd2021740bdb2554b96871bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'b8316ee6fdfa08105fcef6fab09c0f7d') in 0.020737 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/all-light-purple-64.png
+  artifactKey: Guid(caeff96e66278ba4985bd7ab0df74f09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/all-light-purple-64.png using Guid(caeff96e66278ba4985bd7ab0df74f09) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '67c90175aa521d7983dcdfb19f676309') in 0.022298 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/add-person-32.png
+  artifactKey: Guid(eacbdbd382974ac499f8704abec765d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/add-person-32.png using Guid(eacbdbd382974ac499f8704abec765d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '889155adc1ef0c401dbb529fbc5806fd') in 0.019085 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/astronaut-32.png
+  artifactKey: Guid(fa3a29a991d186047ad77e5131d6ec7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/Light_Purple/astronaut-32.png using Guid(fa3a29a991d186047ad77e5131d6ec7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '6cef067dff2dca4598605181065acc68') in 0.017310 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.513559 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/add-32.png
+  artifactKey: Guid(aa470b68fc3eea249982f7f3897c2681) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/add-32.png using Guid(aa470b68fc3eea249982f7f3897c2681) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'e4835d83cc00ce2d98d42cff99559b0e') in 0.024370 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/astronaut-64.png
+  artifactKey: Guid(9b4b33f01da78dd44b546f25d019f7dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/astronaut-64.png using Guid(9b4b33f01da78dd44b546f25d019f7dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '9724419ecb21bbb74b4b70afbcf3a24f') in 0.021676 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/alien-256.png
+  artifactKey: Guid(13deb4298b81c5c46883b7070c65aec1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/alien-256.png using Guid(13deb4298b81c5c46883b7070c65aec1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '7909d418a59a2cede35fcf473c936e9c') in 0.016019 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/add-128.png
+  artifactKey: Guid(8e3ecb6d5ab98fc4a9ee3803a6e64fcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/add-128.png using Guid(8e3ecb6d5ab98fc4a9ee3803a6e64fcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '0fd448d5e6b6a44c108a491f9bfd9d86') in 0.020710 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/axe-64.png
+  artifactKey: Guid(2c1252c0f64252d4dbf0b77c4247cb8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/axe-64.png using Guid(2c1252c0f64252d4dbf0b77c4247cb8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '143a9a5989026a287e0b42ca2516759a') in 0.018262 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/all-white-128.png
+  artifactKey: Guid(1879019500549aa45a356fad9131eab2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/all-white-128.png using Guid(1879019500549aa45a356fad9131eab2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '2fc489713c18fc961ecb152dbc604485') in 0.020640 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 1.054580 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/battle-64.png
+  artifactKey: Guid(e699ac8aab459614b828436b9e157fab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/battle-64.png using Guid(e699ac8aab459614b828436b9e157fab) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '98afbaa3bb84f6246bb70e373d68eedb') in 0.016119 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.516198 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/black-hole-256.png
+  artifactKey: Guid(55aeccb6742fd9e4ebe33fc577938422) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/black-hole-256.png using Guid(55aeccb6742fd9e4ebe33fc577938422) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '70bd78cf63c797b95c3e69777863d3ea') in 0.015634 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.274174 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/book-32.png
+  artifactKey: Guid(9f3aabd41316b10498a1e424a5dd9337) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/book-32.png using Guid(9f3aabd41316b10498a1e424a5dd9337) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'cceedd9dd56c5954bf309b03507a8754') in 0.127374 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.100943 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/bow-128.png
+  artifactKey: Guid(0b129e943b7d8d5458470b9b7bb202df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/bow-128.png using Guid(0b129e943b7d8d5458470b9b7bb202df) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'e4783a7f28412cadfd9543ad748a432c') in 0.016805 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.505451 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/chat-32.png
+  artifactKey: Guid(666b548306cabd0448ef48b9ce69048b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/chat-32.png using Guid(666b548306cabd0448ef48b9ce69048b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '3df2bc48407ad7431aa016ce9f81377b') in 0.025758 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.267526 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/chest-64.png
+  artifactKey: Guid(da0e9506b9e2a6d4d88e24ffd8114268) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/chest-64.png using Guid(da0e9506b9e2a6d4d88e24ffd8114268) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'cd98ff67bec246d681b132e4a5c067f0') in 0.017878 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.245448 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/cloud-256.png
+  artifactKey: Guid(57698481f0457424ba0cc20018d4919a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/cloud-256.png using Guid(57698481f0457424ba0cc20018d4919a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'ee8f884affd8519a562c1714ec1bef74') in 0.018820 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.471579 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/dislike-256.png
+  artifactKey: Guid(fa249a3c91bfc6145a4e58b2919197c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/dislike-256.png using Guid(fa249a3c91bfc6145a4e58b2919197c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'a192bf6aa3a490bcdee6cbf6dd7887fa') in 0.017967 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.278870 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/download-32.png
+  artifactKey: Guid(467854e36049baa459829c439c2a2084) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/download-32.png using Guid(467854e36049baa459829c439c2a2084) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'fae12b2146750940950f8aa21f2e11e0') in 0.026629 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.270648 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/expand-32.png
+  artifactKey: Guid(87dd4cb438558594aac4a531463fd754) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/expand-32.png using Guid(87dd4cb438558594aac4a531463fd754) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '275d0081a9b9e8755aef94fbb7212526') in 0.039169 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.956272 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/half-moon-64.png
+  artifactKey: Guid(fff9156ffd100964ca16783768b20b06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/half-moon-64.png using Guid(fff9156ffd100964ca16783768b20b06) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'e006817332a25fc208f754b6adfb58d3') in 0.035322 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.278196 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/heart-256.png
+  artifactKey: Guid(dd5cd6501e796a34193445f8bbc31408) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/heart-256.png using Guid(dd5cd6501e796a34193445f8bbc31408) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '351c3369aafcc0633f7857b16f05802d') in 0.015697 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.021427 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/home-256.png
+  artifactKey: Guid(c0017e8c889fde94da2dc96ac8a2b133) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/home-256.png using Guid(c0017e8c889fde94da2dc96ac8a2b133) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '13684d6edf95cdca5e57997b1d9eef23') in 0.013568 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.266473 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/info-32.png
+  artifactKey: Guid(2cb04377a943222418153544dae952e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/info-32.png using Guid(2cb04377a943222418153544dae952e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'ac62efad4dcd5d7ed7852a46afc95369') in 0.016019 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.386400 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/key-128.png
+  artifactKey: Guid(657068c4906914f4785776547dfff41b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/key-128.png using Guid(657068c4906914f4785776547dfff41b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '0b3db725020205cda8bf51f806bba490') in 0.023461 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.381068 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/left-arrow-32.png
+  artifactKey: Guid(82ef89d3cd7ff914e9b07d810c3acc12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/left-arrow-32.png using Guid(82ef89d3cd7ff914e9b07d810c3acc12) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '237f4ff62dd70bd10c7667907f881ec5') in 0.016737 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.955756 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/like-128.png
+  artifactKey: Guid(6be8747b4ae10e4468f5ac46f89ce81e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/like-128.png using Guid(6be8747b4ae10e4468f5ac46f89ce81e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'e23d6ae457f59cd716294000fef36d33') in 0.016347 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.603628 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/magnifying-64.png
+  artifactKey: Guid(4b3fad8b070ca5e4c9e72fea78c5fa61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/magnifying-64.png using Guid(4b3fad8b070ca5e4c9e72fea78c5fa61) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'b1cb3b3f21dc36d84797faff892dad5e') in 0.014617 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 2.007256 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/mic-off-256.png
+  artifactKey: Guid(a4211b06fe56ae1498c3ffa474ceafd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/mic-off-256.png using Guid(a4211b06fe56ae1498c3ffa474ceafd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '5e557624d857b8e93d25819a90bc1e7b') in 0.073505 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/Minus-64.png
+  artifactKey: Guid(c4a56c8c3e1143b47b843f6f1facb98d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/Minus-64.png using Guid(c4a56c8c3e1143b47b843f6f1facb98d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'b9c0eedcbf33517b981cd6518277f951') in 0.015334 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.374697 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/music-32.png
+  artifactKey: Guid(d1c8a8b8e7c9c404d8bba101af1a0e53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/music-32.png using Guid(d1c8a8b8e7c9c404d8bba101af1a0e53) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'a74ca8763846f0e39d66f621ff77b055') in 0.015275 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.351313 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/music-off-128.png
+  artifactKey: Guid(c7d440e08fefa5841876deb1358341b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/music-off-128.png using Guid(c7d440e08fefa5841876deb1358341b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '78538f714f5bce2deb8c1062e9bbfc38') in 0.013808 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 1.257323 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/pickaxe-64.png
+  artifactKey: Guid(19069cf27aace814ba40dd9cc6aead6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/pickaxe-64.png using Guid(19069cf27aace814ba40dd9cc6aead6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '47ba1fa6c13d96c748249a901c85f56d') in 0.042216 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.741750 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/potion-32.png
+  artifactKey: Guid(ee6e4c7ab0ca87b48a4c73a6652c59df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/potion-32.png using Guid(ee6e4c7ab0ca87b48a4c73a6652c59df) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '202c400b5715c191571f850df1a9d424') in 0.018394 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.493270 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/power-128.png
+  artifactKey: Guid(971bd5c98b4099049ad2ba215cc09f75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/power-128.png using Guid(971bd5c98b4099049ad2ba215cc09f75) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: 'f48401241eeb79ba9df3d9a9e467206e') in 0.017516 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.532632 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/ranking-32.png
+  artifactKey: Guid(da31c3ea4c82a5e4d96bde4b014eec0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/ranking-32.png using Guid(da31c3ea4c82a5e4d96bde4b014eec0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '47d17fc567d11294dc60ad5ac6c20c50') in 0.024793 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.375341 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/redo-128.png
+  artifactKey: Guid(4db9803b07f17d04086337f1559f5c11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/redo-128.png using Guid(4db9803b07f17d04086337f1559f5c11) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '9bbe92a8e2ff4fb7409dd13ba4635d00') in 0.018859 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.428966 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/ring-32.png
+  artifactKey: Guid(08a4955afda77104ba70bd149db54251) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/ring-32.png using Guid(08a4955afda77104ba70bd149db54251) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '93227e108c604d37f5c09471e5e9101f') in 0.040197 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.329620 seconds.
+  path: Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/rocket-64.png
+  artifactKey: Guid(4dd923648eaa9a349a04263155830652) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Space_Exploration_GUI_Kit/Picto_Icons/White/rocket-64.png using Guid(4dd923648eaa9a349a04263155830652) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 20 workers.
+ -> (artifact id: '5a92ff7f0c1fc9dd970fc34b616e8bda') in 0.159597 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.587 seconds
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.575 seconds
+Domain Reload Profiling: 1163ms
+	BeginReloadAssembly (352ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (235ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (28ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (26ms)
+	LoadAllAssembliesAndSetupDomain (177ms)
+		LoadAssemblies (229ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (12ms)
+			TypeCache.Refresh (6ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (575ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (391ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (36ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (61ms)
+			ProcessInitializeOnLoadAttributes (250ms)
+			ProcessInitializeOnLoadMethodAttributes (32ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (12ms)
+Refreshing native plugins compatible for Editor in 3.11 ms, found 5 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4391 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 28 unused Assets / (216.3 KB). Loaded Objects now: 4947.
+Memory consumption went from 157.1 MB to 156.9 MB.
+Total: 2.961800 ms (FindLiveObjects: 0.249700 ms CreateObjectMapping: 0.161100 ms MarkObjects: 2.385100 ms  DeleteObjects: 0.164800 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: スレッドの終了またはアプリケーションの要求によって、I/O 処理は中止されました。
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
