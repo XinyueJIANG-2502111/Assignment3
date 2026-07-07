@@ -24,7 +24,7 @@ public class ResultScreenManager : MonoBehaviour
             // 2. 动态修改通关时的按钮文案（这里以方案 A 为例）
             // Dynamically change button texts for Victory state
             if (restartButtonText != null) restartButtonText.text = "Go to the next fucking challenge.";
-            if (quitButtonText != null) quitButtonText.text = "Fuck you, I'm out";
+            if (quitButtonText != null) quitButtonText.text = "Fuck you, I'm out.";
         }
         else
         {
@@ -35,11 +35,15 @@ public class ResultScreenManager : MonoBehaviour
             // 2. 恢复失败时的经典文案
             // Restore classic button texts for Loss state
             if (restartButtonText != null) restartButtonText.text = "Suck it up and try again.";
-            if (quitButtonText != null) quitButtonText.text = "Fuck you, I quit";
+            if (quitButtonText != null) quitButtonText.text = "Fuck you, I quit.";
         }
     }
 
-    public void RestartGame() { UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene"); }
+    public void RestartGame() 
+    { 
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        //ScreenTransitionManager.Instance.PlayDissolveTransition("GameScene"); 
+    }
     public void QuitGame() { 
     #if UNITY_EDITOR 
         UnityEditor.EditorApplication.isPlaying = false; 

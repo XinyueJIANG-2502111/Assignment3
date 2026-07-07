@@ -48,8 +48,6 @@ public class TitleMenuManager : MonoBehaviour
         if (isTransitioning) return;
         isTransitioning = true;
 
-        //Debug.Log("Fucking game starting transition!");
-
         // 废弃原先的直接切场景：SceneManager.LoadScene(gameplaySceneName);
         // 替换为：启动协程，先放烟花，放完再切！
         // [New Lifecycle] Play the dissolve visual sequence before loading the scene
@@ -73,10 +71,6 @@ public class TitleMenuManager : MonoBehaviour
             {
                 elapsed += Time.deltaTime;
                 float progress = Mathf.Clamp01(elapsed / fadeOutDuration);
-
-                // 【加入这行测试】看看控制台有没有疯狂刷 log？
-                // [Test] Check if this log is printing rapidly in your Console
-                Debug.Log($"【消融进行中】当前进度: {progress}");
 
                 // 推进消融，黑色逐渐镂空吞噬整个主界面
                 introDissolveMaterial.SetFloat("_IntroProgress", progress);
