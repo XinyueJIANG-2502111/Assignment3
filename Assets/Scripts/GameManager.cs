@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     private int gridRows = 4;
     private int gridCols = 3;
     private List<Vector2> availableGridPositions = new List<Vector2>();
-    private int currentGridIndex = 0;
+    //private int currentGridIndex = 0;
 
     // 动态计算出的绝对安全屏幕边界（世界坐标）
     // Calculated solid boundaries in world space
@@ -42,7 +42,9 @@ public class GameManager : MonoBehaviour
     // [New] Drag and drop your square icon sprites here via the Inspector
     public Sprite[] iconPool;
 
-    
+    [Header("Glitch Transition Settings")]
+    public RectTransform glitchMaskRect;
+    public float transitionDuration = 0.25f;
 
     void Start()
     {
@@ -111,7 +113,7 @@ public class GameManager : MonoBehaviour
         }
 
         ShuffleGrid(availableGridPositions);
-        currentGridIndex = 0;
+        //currentGridIndex = 0;
     }
 
     // 开局 3, 2, 1 倒计时协程，压住主游戏时钟
@@ -253,15 +255,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void TriggerGameOver(bool won)
-    {
-        if (isGameOver) return; 
-        isGameOver = true;
-
-        isVictory = won;
-        SceneManager.LoadScene("ResultScene");
-    }
-
     // 辅助工具：获取当前作为子物体存活在 GameManager 下的图标数
     // Helper to extract active block count directly via transform hierachy
     int GetCurrentBlockCount()
@@ -282,275 +275,75 @@ public class GameManager : MonoBehaviour
             list[n] = value;
         }
     }
+
+    // 升级后的触发游戏结束方法
+    // Upgraded Game Over trigger that intercepts direct scene loading
+    public void TriggerGameOver(bool isWin)
+    {
+        if (isGameOver) return;
+        isGameOver = true;
+        isVictory = isWin;
+
+        // 1. 立即封锁所有图标的点击输入，不准玩家再点
+        // Lock out all player inputs instantly
+        var allBlocks = FindObjectsOfType<DynamicIconBlock>();
+        foreach (var block in allBlocks)
+        {
+            Collider2D col = block.GetComponent<Collider2D>();
+            if (col != null) col.enabled = false;
+        }
+
+        // 2. 停止主循环更新，开启暴躁的死机转场协程
+        // Fire the screen-off transition sequence
+        StartCoroutine(GlitchScreenOffRoutine(isWin));
+    }
+
+    IEnumerator GlitchScreenOffRoutine(bool isWin)
+    {
+        if (glitchMaskRect != null)
+        {
+            float elapsed = 0f;
+
+            // 【第一阶段：电涌凝聚】
+            // 先把遮罩的 Y 轴缩放从 0 挤压到 0.02，形成一条横切屏幕的刺眼高亮霓虹线！
+            // Phase 1: Condense into a sharp horizontal pixel line
+            while (elapsed < transitionDuration * 0.4f)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / (transitionDuration * 0.4f);
+                
+                // X轴满，Y轴微微张开一条缝
+                glitchMaskRect.localScale = new Vector3(1f, Mathf.Lerp(0f, 0.02f, t), 1f);
+                yield return null;
+            }
+
+            // 稍微在死线状态定格 0.03 秒，配合一声音效最佳，传达断电卡死感
+            // Micro-freeze to emphasize system failure
+            yield return new WaitForSeconds(0.03f);
+
+            elapsed = 0f;
+            // 【第二阶段：全面黑屏坍塌】
+            // 霓虹线瞬间纵向爆开（Y轴从 0.02 飙升到 1f），彻底吞噬整个游戏世界！
+            // Phase 2: Snap expansion to swallow the entire screen in total darkness
+            while (elapsed < transitionDuration * 0.6f)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / (transitionDuration * 0.6f);
+                
+                // 使用 pow(t, 3) 产生一个非线性的突变式加速，啪的一下全黑
+                float curve = Mathf.Pow(t, 3);
+                glitchMaskRect.localScale = new Vector3(1f, Mathf.Lerp(0.02f, 1f, curve), 1f);
+                yield return null;
+            }
+        }
+        else
+        {
+            // 防御性保底：如果没有挂载 UI，就直接等 0.2 秒
+            yield return new WaitForSeconds(transitionDuration);
+        }
+
+        // 3. 此时整个屏幕已经是一片死黑，无缝载入新场景
+        // Screen is now pitch black. Load the results safely.
+        SceneManager.LoadScene("ResultScene");
+    }
 }
-
-
-
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine.SceneManagement;
-// using UnityEngine;
-
-// public class GameManager : MonoBehaviour
-// {
-//     [Header("UI System")]
-//     public GameUIManager uiManager;
-//     private int score; 
-//     // 【新增】为了方便 UI 读取，把最大允许方块数也移到 GameManager 里来统一管理
-//     // [New] Manage max allowed blocks here for global reference
-//     public int maxAllowedBlocks = 15;
-
-//     public static bool isVictory = false;
-//     float minHeightY;
-//     float maxHeightY;
-
-//     // 在 Inspector 中拖入刚才制作的方块预制件
-//     // Drag and drop the block prefab into this slot via Inspector
-//     public GameObject blockPrefab;
-
-//     // 每隔多少秒生成一个方块
-//     // How many seconds between each spawn
-//     public float spawnInterval = 1.0f;
-
-//     // 屏幕左右生成的 X 轴范围（暂定一个固定值，后续可动态计算）
-//     // The X-axis range for spawning (temporary fixed value, can be dynamic later)
-//     public float spawnRangeX = 2.0f;
-
-//     // 生成的 Y 轴高度（确保在屏幕上方外）
-//     // The Y-axis height for spawning (above the visible screen)
-//     public float spawnHeightY = 6.0f;
-
-
-//     [Header("Other Settings")]
-//     // 游戏总时长（秒） / Total game duration (in seconds)
-//     public float gameDuration = 30f; 
-//     // 剩余时间计数器 / Remainder time counter
-//     private float timeRemaining;     
-//     // 游戏是否已经结束的标志 / Flag to check if game is already over
-//     private bool isGameOver = false; 
-
-
-//     [Header("Input Optimization")]
-//     // 点击判定增加的额外半径（单位：米），数值越大越容易点中
-//     // Extra radius added to the click detection (in units). Higher = easier to click.
-//     public float clickBufferRadius = 0.3f; 
-
-
-//     [Header("Data Source")]
-//     // 拖入你刚刚创建的 WordPoolAsset 资产文件 / Drag your WordPoolAsset here
-//     public WordPoolAsset wordPoolSource;
-
-//     // 运行时的“抽卡包” / The runtime dynamic spawning bag
-//     private List<string> runtimeSpawnBag = new List<string>();
-
-
-//     void Start()
-//     {
-//         // 初始化自适应边界 / Initialize adaptive boundaries
-//         Camera mainCam = Camera.main;
-//         Vector3 topRight = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-//         Vector3 bottomLeft = mainCam.ScreenToWorldPoint(new Vector3(0, 0, 0));
-
-//         // 稍微往内缩一点，防止方块卡出屏幕外
-//         spawnRangeX = topRight.x - 1.0f; 
-//         // 新增一个变量或者直接在这里用：
-//         // 允许生成的 Y 轴范围变成整个屏幕高度
-//         minHeightY = bottomLeft.y + 1.0f;
-//         maxHeightY = topRight.y - 1.0f; 
-
-//         // 初始化游戏状态 / Initialize game state
-//         timeRemaining = gameDuration;
-//         isGameOver = false;
-//         isVictory = false;
-//         score = 0;
-
-//         if (uiManager != null)
-//         {
-//             uiManager.InitUI(gameDuration, maxAllowedBlocks);
-//         }
-
-//         // 开启循环生成协程
-//         // Start the loop spawning coroutine
-//         StartCoroutine(SpawnRoutine());
-//     }
-
-//     IEnumerator SpawnRoutine()
-//     {
-//         // 只要游戏没结束，就一直生成方块 / Keep spawning as long as game is not over
-//         while (!isGameOver)
-//         {
-//             float randomX = Random.Range(-spawnRangeX, spawnRangeX);
-//             Vector3 spawnPos = new Vector3(randomX, spawnHeightY, 0);
-//             //Instantiate(blockPrefab, spawnPos, Quaternion.identity);
-//             SpawnWord();
-            
-//             // 可以根据需要调整下落频率 / Adjust spawn speed as needed
-//             yield return new WaitForSeconds(0.8f); 
-//         }
-//     }
-
-//     void Update()
-//     {
-//         if (isGameOver) return;
-//         if (Time.timeScale == 0f) return;
-
-//         // 倒计时逻辑 / Countdown logic
-//         if (timeRemaining > 0)
-//         {
-//             timeRemaining -= Time.deltaTime;
-//             if (uiManager != null) uiManager.UpdateTimer(timeRemaining);
-//         }
-//         else
-//         {
-//             // 时间到了！玩家成功撑过了30秒，判定胜利！
-//             // Time's up! Player survived 30 seconds, Victory!
-//             TriggerGameOver(true);
-//         }
-
-//         // 检测鼠标左键点击，或者手机单指触摸
-//         // Detect mouse left click or mobile single touch
-//         if (Input.GetMouseButtonDown(0))
-//         {
-//             HandleClick(Input.mousePosition);
-//         }
-
-//         // Constantly sync live block count to UI
-//         int liveBlocks = FindObjectsOfType<DynamicWordBlock>().Length;
-//         if (uiManager != null)
-//         {
-//             uiManager.UpdateTrashCount(liveBlocks, maxAllowedBlocks);
-//         }
-
-//         Debug.Log(score);
-//     }
-
-//     void HandleClick(Vector3 screenPosition)
-//     {
-//         // 将屏幕点击的像素坐标转换为 2D 世界坐标
-//         // Convert screen pixel position to 2D world position
-//         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(screenPosition);
-//         Vector2 touchPos = new Vector2(worldPoint.x, worldPoint.y);
-
-//         // 使用重叠圆圈检测，不仅检测点本身，还包含我们设置的缓冲区半径
-//         // Use OverlapCircle to detect objects within a small radius of the touch point
-//         Collider2D hitCollider = Physics2D.OverlapCircle(touchPos, clickBufferRadius);
-
-//         if (hitCollider != null)
-//         {
-//             // 确保点中的是我们想要消除的方块
-//             // Ensure the hit object is our target block
-//             DynamicWordBlock block = hitCollider.GetComponent<DynamicWordBlock>();
-//             if (block != null)
-//             {
-//                 // 【新增】击碎方块，加分，并同步给 UI！
-//                 score++;
-//                 if (uiManager != null) uiManager.UpdateScore(score);
-
-//                 // 触发消除逻辑
-//                 // Trigger the destruction logic
-//                 Destroy(block.gameObject);
-
-//                 // 这里以后可以用来触发连击加分、播放音效等
-//                 // This can be used for combo counter, SFX, etc. later
-//                 //Debug.Log("精准消灭高速方块！");
-//             }
-//         }
-//     }
-
-//     // 在 Scene 视图中画出这个点击缓冲圈，方便你调试
-//     // Draw the click buffer in Scene view for debugging purposes
-//     private void OnDrawGizmos()
-//     {
-//         if (Camera.main != null)
-//         {
-//             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-//             Gizmos.color = Color.green;
-//             Gizmos.DrawWireSphere(new Vector3(mouseWorld.x, mouseWorld.y, 0), clickBufferRadius);
-//         }
-//     }
-
-//     public void TriggerGameOver(bool won)
-//     {
-//         // 安全锁，防止在一帧内同时触发胜利和失败（比如30秒到的瞬间刚好方块触顶）
-//         // Safety lock to prevent simultaneous win/loss triggers within a single frame
-//         if (isGameOver) return; 
-//         isGameOver = true;
-
-//         isVictory = won;
-//         //Debug.Log(won ? "【胜利】坚持了30秒！" : "【失败】方块触顶了！");
-
-//         // 跳转到结算场景 / Load Result Scene
-//         SceneManager.LoadScene("ResultScene");
-//     }
-
-    
-//     string GetNextWord()
-//     {
-//         // 安全检查：如果忘记拖入资产，返回一个保底词
-//         // Safety check: if asset is missing, return a fallback word
-//         if (wordPoolSource == null || wordPoolSource.everythingTrashPool.Count == 0)
-//         {
-//             Debug.LogError("【错误】GameManager 身上没有挂载词库资产！/ WordPoolAsset is missing!");
-//             return "Missing Word Asset";
-//         }
-
-//         // 如果包空了，从资产文件中复制一份放进去，并重新洗牌
-//         // If the bag is empty, refill it from the asset pool and shuffle
-//         if (runtimeSpawnBag.Count == 0)
-//         {
-//             runtimeSpawnBag.AddRange(wordPoolSource.everythingTrashPool);
-//             ShuffleBag(runtimeSpawnBag);
-//             Debug.Log("<color=cyan>【系统】词库抽空，已重新从资产洗牌！</color>");
-//         }
-
-//         int lastIndex = runtimeSpawnBag.Count - 1;
-//         string chosenWord = runtimeSpawnBag[lastIndex];
-//         runtimeSpawnBag.RemoveAt(lastIndex);
-
-//         return chosenWord;
-//     }
-
-//     void SpawnWord()
-//     {
-//         if (blockPrefab == null || wordPoolSource.everythingTrashPool.Count == 0) return;
-
-//         float randomX = Random.Range(-spawnRangeX, spawnRangeX);
-//         float randomY = Random.Range(minHeightY, maxHeightY); // 全屏幕随机 Y 轴
-//         Vector3 spawnPosition = new Vector3(randomX, randomY, 0);
-
-//         //float randomX = Random.Range(-spawnRangeX, spawnRangeX);
-//         //Vector3 spawnPosition = new Vector3(randomX, spawnHeightY, 0);
-
-//         // 实例化自适应方块 / Instantiate the adaptive block
-//         GameObject newBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity);
-
-//         // 随机抽一个精神垃圾 / Pick a random spiritual trash
-//         string randomTrash = GetNextWord();
-
-//         // 调用 Setup 函数，方块会自动根据字数长短变长或变短！
-//         // Call Setup, the block will automatically resize based on word length!
-//         DynamicWordBlock script = newBlock.GetComponent<DynamicWordBlock>();
-//         if (script != null)
-//         {
-//             script.Setup(randomTrash);
-//         }
-//     }
-
-//     // 经典费舍尔-耶茨洗牌算法 / Classic Fisher-Yates Shuffle Algorithm
-//     // 这是一个原汁原味的 C# 数组/列表打乱算法，常用于游戏开发中的卡组洗牌
-//     void ShuffleBag(List<string> list)
-//     {
-//         int n = list.Count;
-//         while (n > 1)
-//         {
-//             n--;
-//             // 随机挑选一个索引 / Pick a random index
-//             int k = Random.Range(0, n + 1);
-        
-//             // 交换两个元素的位置 / Swap the two elements
-//             string value = list[k];
-//             list[k] = list[n];
-//             list[n] = value;
-//         }
-//     }
-// }

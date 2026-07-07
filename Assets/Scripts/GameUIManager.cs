@@ -77,7 +77,7 @@ public class GameUIManager : MonoBehaviour
     public void UpdateScore(int currentScore)
     {
         if (scoreText == null) return;
-        scoreText.text = $"{currentScore}";
+        scoreText.text = $"Score: {currentScore}";
     }
 
     // 更新场上垃圾数量显示 / Update current trash overload count
@@ -85,7 +85,7 @@ public class GameUIManager : MonoBehaviour
     {
         if (trashCountText == null) return;
         
-        trashCountText.text = $"TRASH: {currentCount}/{maxAllowed}";
+        trashCountText.text = $"Blocks: {currentCount}/{maxAllowed}";
 
         // 【高血压视觉特效】如果场上垃圾快爆满了，让文字变成惊悚的红色！
         // [Visul Tint] Change text color to flashing red if close to bursting limit

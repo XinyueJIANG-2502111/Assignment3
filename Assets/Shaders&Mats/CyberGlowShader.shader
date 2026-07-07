@@ -4,16 +4,19 @@ Shader "Custom/CyberGlowSprite"
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
+        _Progress ("Explosion Progress", Range(0, 1)) = 0.0 
+        _GlowIntensity ("Glow Intensity", Float) = 4.0
+        _DissolveEdgeWidth ("Edge Width", Range(0, 0.2)) = 0.05 
         
-        [Header(Glow Settings)]
-        _GlowColor ("Glow Color", Color) = (0, 1, 1, 1) // 发光颜色 / Neon Glow Color
-        _GlowSize ("Glow Size", Range(0, 0.5)) = 0.1     // 发光内缩范围 / Glow Size Internal
-        _GlowPower ("Glow Power", Range(1, 5)) = 2.0    // 发光强度 / Glow Intensity
+        // 【新属性】描边的宽度与颜色
+        // [New Properties] Control outline thickness and shade
+        _OutlineThickness ("Outline Thickness", Range(0, 0.02)) = 0.005
+        _OutlineColor ("Outline Color", Color) = (0, 0, 0, 1) // 默认纯黑防粘连
     }
 
     SubShader
     {
-        Tags
+        Tags 
         { 
             "Queue"="Transparent" 
             "IgnoreProjector"="True" 
@@ -22,14 +25,12 @@ Shader "Custom/CyberGlowSprite"
             "CanUseSpriteAtlas"="True"
         }
 
-        Cull Off
-        Lighting Off
-        ZWrite Off
-        Blend One OneMinusSrcAlpha // 支持透明度通道 / Support Alpha Blending
+        Cull Off Lighting Off ZWrite Off
+        Blend One OneMinusSrcAlpha
 
         Pass
         {
-        CGPROGRAM
+            CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
@@ -49,14 +50,32 @@ Shader "Custom/CyberGlowSprite"
             };
 
             sampler2D _MainTex;
+            float4 _MainTex_TexelSize; // Unity 自动填充的贴图像素大小，用于精准计算偏移
             fixed4 _Color;
-            fixed4 _GlowColor;
-            float _GlowSize;
-            float _GlowPower;
+            float _Progress;
+            float _GlowIntensity;
+            float _DissolveEdgeWidth;
+            float _OutlineThickness;
+            fixed4 _OutlineColor;
+
+            float GenerateNoise(float2 uv)
+            {
+                return frac(sin(dot(uv.xy, float2(12.9898, 78.233))) * 43758.5453123);
+            }
 
             v2f vert(appdata_t IN)
             {
                 v2f OUT;
+                float2 vertexXY = IN.vertex.xy;
+                if (length(vertexXY) < 0.0001)
+                {
+                    vertexXY = float2(0.0, 1.0);
+                }
+                float2 pushDirection = normalize(vertexXY);
+                
+                float blastAmplitude = pow(_Progress, 1.5) * 1.5; 
+                IN.vertex.xy += pushDirection * blastAmplitude;
+
                 OUT.vertex = UnityObjectToClipPos(IN.vertex);
                 OUT.texcoord = IN.texcoord;
                 OUT.color = IN.color * _Color;
@@ -65,37 +84,49 @@ Shader "Custom/CyberGlowSprite"
 
             fixed4 frag(v2f IN) : SV_Target
             {
-                // 采样原始 Sprite 纹理 / Sample original sprite texture
+                // 1. 基础采样与消融判定 / Base sampling and dissolve
                 fixed4 texColor = tex2D(_MainTex, IN.texcoord);
-                
-                // 计算 UV 坐标到边缘的距离，用于制造内发光
-                // Calculate distance from UV to borders to generate inner glow
-                float minX = IN.texcoord.x;
-                float maxX = 1.0 - IN.texcoord.x;
-                float minY = IN.texcoord.y;
-                float maxY = 1.0 - IN.texcoord.y;
-                
-                // 找到距离四边最近的距离 / Find shortest distance to any edge
-                float edgeDist = min(min(minX, maxX), min(minY, maxY));
-                
-                // 计算发光衰减 / Calculate glow attenuation
-                float glowFactor = smoothstep(0.0, _GlowSize, edgeDist);
-                glowFactor = 1.0 - glowFactor; // 反转，让边缘最亮 / Invert to make edges brightest
-                glowFactor = pow(glowFactor, _GlowPower); // 增强指数强度 / Power intensity
+                float noise = GenerateNoise(IN.texcoord * 10.0);
+                float threshold = pow(_Progress, 1.2); 
+                clip(texColor.a * (noise - threshold));
 
-                // 将发光颜色混合到原本的颜色上
-                // Combine the glow color with the base color
-                fixed4 finalColor = texColor * IN.color;
+                // 2. 【核心新增】像素级上下左右四手采样判定法，强行捕捉图形边缘
+                // [Outline Calculation] Multi-sample neighboring pixels to detect contours
+                float2 upAlpha    = tex2D(_MainTex, IN.texcoord + float2(0, _OutlineThickness)).a;
+                float2 downAlpha  = tex2D(_MainTex, IN.texcoord - float2(0, _OutlineThickness)).a;
+                float2 leftAlpha  = tex2D(_MainTex, IN.texcoord - float2(_OutlineThickness, 0)).a;
+                float2 rightAlpha = tex2D(_MainTex, IN.texcoord + float2(_OutlineThickness, 0)).a;
                 
-                // 只在 Sprite 有像素的地方显示发光 / Apply glow only within sprite alpha mask
-                finalColor.rgb += _GlowColor.rgb * glowFactor * finalColor.a;
+                // 如果当前像素透明度低，但四周有像素，说明这里是“外描边”区域
+                // If current pixel is fading but neighbors are solid, mark as outline
+                float outlineFactor = max(max(upAlpha, downAlpha), max(leftAlpha, rightAlpha)) - texColor.a;
+                outlineFactor = saturate(outlineFactor);
 
-                // 保持透明度预乘 / Pre-multiplied alpha
-                finalColor.rgb *= finalColor.a;
+                // 3. 计算消融烧灼火花
+                float edgeCheck = noise - threshold;
+                float isEdge = 0.0;
+                if (edgeCheck > 0.0 && edgeCheck < _DissolveEdgeWidth)
+                {
+                    isEdge = 1.0;
+                }
+                isEdge *= step(0.01, _Progress); 
 
-                return finalColor;
+                // 4. 颜色混合体系 / Color blending pipeline
+                float fade = 1.0 - _Progress;
+                fixed3 baseColor = texColor.rgb * IN.color.rgb * _GlowIntensity;
+                fixed3 edgeGlow = IN.color.rgb * _GlowIntensity * 3.0; 
+                
+                // 优先渲染内部色块，在边缘混合深色描边
+                // Lerp inside color with our protective dark outline
+                fixed3 finalRGB = lerp(baseColor, edgeGlow, isEdge);
+                finalRGB = lerp(finalRGB, _OutlineColor.rgb, outlineFactor) * fade;
+                
+                // 确保描边部分也能被渲染出来
+                float finalAlpha = max(texColor.a, outlineFactor) * fade;
+
+                return fixed4(finalRGB * finalAlpha, finalAlpha);
             }
-        ENDCG
+            ENDCG
         }
     }
 }

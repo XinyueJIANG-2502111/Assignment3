@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement; // 用于切换到正式游戏场景 / Required for scene switching
 
 public class TitleMenuManager : MonoBehaviour
@@ -11,7 +13,13 @@ public class TitleMenuManager : MonoBehaviour
 
     [Header("Scene Settings")]
     // 正式游戏场景的名字 / The name of your gameplay scene
-    public string gameplaySceneName = "GameplayScene";
+    public string gameplaySceneName = "GameScene";
+
+    [Header("Intro Dissolve Settings")]
+    public Material introDissolveMaterial; // 拖入 M_UI_ScreenDissolve 材质球
+    public GameObject introMaskObject;    // 拖入挂载了该材质的全屏 UI Image 物体 
+    public float fadeOutDuration = 0.5f;  // 入场消融持续时间
+    private bool isTransitioning = false;
 
     void Start()
     {
@@ -19,18 +27,73 @@ public class TitleMenuManager : MonoBehaviour
         // Ensure all popups are closed when the title scene starts
         if (settingsMenuPanel != null) settingsMenuPanel.SetActive(false);
         if (guidePanel != null) guidePanel.SetActive(false);
+        if (introMaskObject != null) introMaskObject.SetActive(false); // 确保遮罩物体激活，准备燃尽
+
+        // 【开局初始化】确保遮罩处于完全“未消融（全透明/不遮挡）”状态，或者直接把进度重置为 0
+        // [Init] Reset the material progress so the screen is interactive at start
+        if (introDissolveMaterial != null)
+        {
+            introDissolveMaterial.SetFloat("_IntroProgress", 0f);
+        }
     }
 
     // 【1. 点击全屏空白处时触发】 / Triggered when clicking the full-screen transparent panel
     public void StartGame()
     {
-        // 安全锁：如果玩家正开着设置面板或说明面板，点击空白处不应该误切场景
-        // Safety check: Do not start the game if any config panel is currently open
+        // 安全锁一：如果面板开着，不触发
         if (settingsMenuPanel.activeSelf || guidePanel.activeSelf) return;
 
-        Debug.Log("Fucking game started!");
+        // 安全锁二：如果已经在转场中了，直接无视（防止疯狂连击导致多次 LoadScene 崩溃）
+        // Prevents multi-click scene loading crashes
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        //Debug.Log("Fucking game starting transition!");
+
+        // 废弃原先的直接切场景：SceneManager.LoadScene(gameplaySceneName);
+        // 替换为：启动协程，先放烟花，放完再切！
+        // [New Lifecycle] Play the dissolve visual sequence before loading the scene
+        StartCoroutine(BurnAndLoadSceneRoutine());
+    }
+
+    IEnumerator BurnAndLoadSceneRoutine()
+    {
+        if (introMaskObject != null)
+        {
+            introMaskObject.SetActive(true); // 激活它，准备随时燃尽
+        }
+
+        if (introDissolveMaterial != null)
+        {
+            float elapsed = 0f;
+
+            // 让材质的 _IntroProgress 从 0 匀速狂飙到 1 
+            // Drive the Shader's progress from 0 (Normal) to 1 (Fully Dissolved/Burned)
+            while (elapsed < fadeOutDuration)
+            {
+                elapsed += Time.deltaTime;
+                float progress = Mathf.Clamp01(elapsed / fadeOutDuration);
+
+                // 【加入这行测试】看看控制台有没有疯狂刷 log？
+                // [Test] Check if this log is printing rapidly in your Console
+                Debug.Log($"【消融进行中】当前进度: {progress}");
+
+                // 推进消融，黑色逐渐镂空吞噬整个主界面
+                introDissolveMaterial.SetFloat("_IntroProgress", progress);
+                yield return null;
+            }
+        }
+        else
+        {
+            // 防御性保底：万一忘了挂材质，也至少等一两帧
+            yield return new WaitForSeconds(fadeOutDuration);
+        }
+
+        // 此时画面已经全屏燃尽，变成了满屏高亮霓虹洞洞然后归于虚无，正式切关！
+        // Visual sequence concluded. Fire scene loader now!
         SceneManager.LoadScene(gameplaySceneName);
     }
+
 
     // 【2. 点击 Settings 按钮】 / Open Settings Menu
     public void OpenSettings()
