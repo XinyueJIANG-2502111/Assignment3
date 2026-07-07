@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Glitch Transition Settings")]
     public RectTransform glitchMaskRect;
-    public float transitionDuration = 0.25f;
+    public float transitionDuration = 0.5f;
 
     void Start()
     {
