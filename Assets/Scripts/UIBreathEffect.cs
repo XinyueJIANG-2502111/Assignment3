@@ -1,18 +1,18 @@
 using UnityEngine;
-using TMPro; // 确保引入 TextMeshPro 命名空间 / Ensure TMPro namespace is included
+using TMPro;
 
 public class UIBreathEffect : MonoBehaviour
 {
     private TextMeshProUGUI textComponent;
 
     [Header("Breath Settings")]
-    [Tooltip("呼吸速度，数值越大闪烁越快 / Breathing speed, higher means faster")]
+    [Tooltip("Breathing speed, higher means faster")]
     public float breathSpeed = 3.5f;
 
-    [Tooltip("最暗时的透明度 (0 到 1) / Minimum alpha value (0 to 1)")]
+    [Tooltip("Minimum alpha value (0 to 1)")]
     public float minAlpha = 0.0f;
 
-    [Tooltip("最亮时的透明度 (0 到 1) / Maximum alpha value (0 to 1)")]
+    [Tooltip("Maximum alpha value (0 to 1)")]
     public float maxAlpha = 1.0f;
 
     void Start()
@@ -23,7 +23,7 @@ public class UIBreathEffect : MonoBehaviour
         
         if (textComponent == null)
         {
-            Debug.LogError("未找到 TextMeshProUGUI 组件！请确保脚本挂在文本物体上。/ TextMeshProUGUI not found!");
+            Debug.LogError("TextMeshProUGUI not found! Please ensure this script is attached to a text object.");
             enabled = false; // 如果没找到则禁用此脚本 / Disable script if component missing
         }
     }

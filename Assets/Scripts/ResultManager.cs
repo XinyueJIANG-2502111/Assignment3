@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro; // 引入 TMP 命名空间 / Required for modifying button text
+using TMPro; // Required for modifying button text
 
 public class ResultScreenManager : MonoBehaviour
 {
@@ -8,32 +8,30 @@ public class ResultScreenManager : MonoBehaviour
     public GameObject loseTextObject; 
 
     [Header("Button Text References")]
-    // 拖入你左边“重来”按钮下的 Text 组建 / Text component of the restart button
+    // Text component of the restart button
     public TextMeshProUGUI restartButtonText; 
-    // 拖入你右边“退出”按钮下的 Text 组件 / Text component of the quit button
+    // Text component of the quit button
     public TextMeshProUGUI quitButtonText;    
 
     void Start()
     {
         if (GameManager.isVictory)
         {
-            // 1. 显示胜利文字 / Show Victory text
+            // クリアの場合のテキストを表示 / Show Victory text
             if (winTextObject != null) winTextObject.SetActive(true);
             if (loseTextObject != null) loseTextObject.SetActive(false);
 
-            // 2. 动态修改通关时的按钮文案（这里以方案 A 为例）
+            // オプションボタンのテキストをクリア状況に応じて変更
             // Dynamically change button texts for Victory state
             if (restartButtonText != null) restartButtonText.text = "Go to the next fucking challenge.";
             if (quitButtonText != null) quitButtonText.text = "Fuck you, I'm out.";
         }
         else
         {
-            // 1. 显示失败文字 / Show Loss text
+            // クリアできなかった場合の表示
             if (winTextObject != null) winTextObject.SetActive(false);
             if (loseTextObject != null) loseTextObject.SetActive(true);
 
-            // 2. 恢复失败时的经典文案
-            // Restore classic button texts for Loss state
             if (restartButtonText != null) restartButtonText.text = "Suck it up and try again.";
             if (quitButtonText != null) quitButtonText.text = "Fuck you, I quit.";
         }
@@ -41,12 +39,14 @@ public class ResultScreenManager : MonoBehaviour
 
     public void RestartGame() 
     { 
+        // クリック音を再生 / Play click sound effect
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX("Click"); 
         }
+
+        // ゲームシーンにもどる / Load the gameplay scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
-        //ScreenTransitionManager.Instance.PlayDissolveTransition("GameScene"); 
     }
     public void QuitGame() { 
     #if UNITY_EDITOR 

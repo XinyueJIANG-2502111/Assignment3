@@ -13,19 +13,17 @@ public class GameManager : MonoBehaviour
     public static bool isVictory = false;
 
     [Header("Spawning & Boundary Settings (Upgraded)")]
-    // 之前拖 WordBlockPrefab 的槽位，现在用来拖你的随机图标方块预制件
-    // Slot for your icon block prefab
     public GameObject blockPrefab;
     public float spawnInterval = 1.0f;
 
     // 虚拟网格行列数，用于将图标完美错开，防止扎堆
     // Grid configuration for pseudo-random discrete layout
-    private int gridRows = 4;
-    private int gridCols = 3;
+    private int gridRows = 10;
+    private int gridCols = 7;
     private List<Vector2> availableGridPositions = new List<Vector2>();
     //private int currentGridIndex = 0;
 
-    // 动态计算出的绝对安全屏幕边界（世界坐标）
+    // 画面の境界
     // Calculated solid boundaries in world space
     private float minX, maxX, minY, maxY;
 
@@ -37,9 +35,9 @@ public class GameManager : MonoBehaviour
     [Header("Input Optimization")]
     public float clickBufferRadius = 0.3f; 
 
-    [Header("Icon Pool Settings (New)")]
-    // 【新增】取代原本的纯文本词库资产，在这里直接放入你准备好的尺寸一致的图标
-    // [New] Drag and drop your square icon sprites here via the Inspector
+    [Header("Icon Pool Settings")]
+    // アイテムの画像を格納する容器
+    // Container for all the icon sprites to be randomly selected
     public Sprite[] iconPool;
 
     [Header("Glitch Transition Settings")]
@@ -48,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // 1. 彻底解决出界：根据当前摄像机和视口动态计算绝对安全边界
+        // 境界を計算する
         // Calculate secure boundaries using the current main camera
         CalculateSecureBoundaries();
 
@@ -56,7 +54,7 @@ public class GameManager : MonoBehaviour
         // Partition virtual grid cells and shuffle them initially
         GenerateGridPositions();
 
-        // 3. 初始化游戏状态 / Initialize game state
+        // ゲームシーンの初期化 / Initialize game state
         timeRemaining = gameDuration;
         isGameOver = false;
         isVictory = false;
@@ -67,12 +65,12 @@ public class GameManager : MonoBehaviour
             uiManager.InitUI(gameDuration, maxAllowedBlocks);
         }
 
-        // 4. 开启开局倒计时，然后再生成图标
+        // 開始前にカウントダウンをする
         // Start opening sequence before releasing icons
         StartCoroutine(OpeningSequenceRoutine());
     }
 
-    // 计算安全的屏幕边界（已扣除图标预估大小的内边距）
+    // 画面境界を計算する
     // Secure boundary calculation considering block width and height cushions
     void CalculateSecureBoundaries()
     {
@@ -116,7 +114,7 @@ public class GameManager : MonoBehaviour
         //currentGridIndex = 0;
     }
 
-    // 开局 3, 2, 1 倒计时协程，压住主游戏时钟
+    // カウントダウン
     // Opening countdown locks core timers until completion
     IEnumerator OpeningSequenceRoutine()
     {
@@ -156,7 +154,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
 
             // 场上图标满了就挂起 / Pause if screen is full
-            if (GetCurrentBlockCount() >= maxAllowedBlocks) continue;
+            if (GetCurrentBlockCount() > maxAllowedBlocks) continue;
 
             if (blockPrefab != null && iconPool != null && iconPool.Length > 0)
             {
@@ -188,8 +186,7 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return;
         if (Time.timeScale == 0f) return;
 
-        // 倒计时逻辑：调用全新的平滑环形进度条 UI
-        // Timer logic: hooks to the newly implemented circular progress bar interface
+        // カウントダウン：円環の進捗バーで残り時間を表示
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
@@ -200,22 +197,22 @@ public class GameManager : MonoBehaviour
             TriggerGameOver(true);
         }
 
-        // 检测点触
+        // クリックを検出する
         if (Input.GetMouseButtonDown(0))
         {
             HandleClick(Input.mousePosition);
         }
 
-        // 动态统计场上的图标总数，实时回传至垃圾计数器
+        // 画面上のアイテム数をカウントする
         int liveBlocks = GetCurrentBlockCount();
         if (uiManager != null)
         {
             uiManager.UpdateTrashCount(liveBlocks, maxAllowedBlocks);
         }
 
-        // 触发爆血管的失败条件：如果场上图标积压到15个以上，当场输掉
+        // ゲームオーバー条件：アイテムの数が設定した限界（15）を越えた場合
         // Game Over condition: if the garbage screen overflows past the limits
-        if (liveBlocks >= maxAllowedBlocks)
+        if (liveBlocks > maxAllowedBlocks)
         {
             TriggerGameOver(false);
         }
@@ -238,31 +235,21 @@ public class GameManager : MonoBehaviour
                 score++;
                 if (uiManager != null) uiManager.UpdateScore(score);
 
-                // 物理销毁
-                //Destroy(block.gameObject);
+                // エフェクトを再生し、アイテムを削除する
+                // Trigger the click blast effect and destroy the icon
                 block.TriggerClickBlast();
             }
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        if (Camera.main != null)
-        {
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(new Vector3(mouseWorld.x, mouseWorld.y, 0), clickBufferRadius);
-        }
-    }
-
-    // 辅助工具：获取当前作为子物体存活在 GameManager 下的图标数
+    // 画面上にあるアイテムの数を取得する
     // Helper to extract active block count directly via transform hierachy
     int GetCurrentBlockCount()
     {
         return transform.childCount;
     }
 
-    // 经典费舍尔-耶茨二维向量洗牌算法 / Fisher-Yates Shuffle for Grid Positions
+    // Fisher-Yates Shuffle for Grid Positions
     void ShuffleGrid(List<Vector2> list)
     {
         int n = list.Count;
@@ -276,7 +263,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 升级后的触发游戏结束方法
+    // ゲームオーバーのトリガー（エフェクトを再生してからシーン遷移）
     // Upgraded Game Over trigger that intercepts direct scene loading
     public void TriggerGameOver(bool isWin)
     {
@@ -284,7 +271,7 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         isVictory = isWin;
 
-        // 1. 立即封锁所有图标的点击输入，不准玩家再点
+        // プレイヤーからの入力をロックする
         // Lock out all player inputs instantly
         var allBlocks = FindObjectsOfType<DynamicIconBlock>();
         foreach (var block in allBlocks)
@@ -293,7 +280,7 @@ public class GameManager : MonoBehaviour
             if (col != null) col.enabled = false;
         }
 
-        // 2. 停止主循环更新，开启暴躁的死机转场协程
+        // 画面オフの遷移シーケンスを起動します
         // Fire the screen-off transition sequence
         StartCoroutine(GlitchScreenOffRoutine(isWin));
     }
@@ -345,5 +332,18 @@ public class GameManager : MonoBehaviour
         // 3. 此时整个屏幕已经是一片死黑，无缝载入新场景
         // Screen is now pitch black. Load the results safely.
         SceneManager.LoadScene("ResultScene");
+    }
+
+
+    // デバッグ用：カーソルの位置にクリック判定範囲を描画する
+    // Debugging: Draw the click buffer radius around the mouse cursor
+    private void OnDrawGizmos()
+    {
+        if (Camera.main != null)
+        {
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(new Vector3(mouseWorld.x, mouseWorld.y, 0), clickBufferRadius);
+        }
     }
 }

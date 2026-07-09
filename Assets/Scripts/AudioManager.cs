@@ -6,31 +6,32 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [Header("Audio Sources")]
-    [Tooltip("专门用来播放背景音乐的喇叭 / Dedicated for BGM")]
+    [Tooltip("Dedicated for BGM")]
     private AudioSource bgmSource;
-    [Tooltip("专门用来并发播放音效的喇叭 / Dedicated for SFX loops/shots")]
+    [Tooltip("Dedicated for SFX loops/shots")]
     private AudioSource sfxSource;
 
     //[Header("Audio Clips Database")]
-    // 用字典或者直观的列表在面板里注册音效
+    // サウンドライブラリ
     // Audio library struct to link a string Key to an AudioClip file
     [System.Serializable]
     public struct SoundEffect
     {
-        public string soundName; // 音效的名字，比如 "Click", "Explode", "BGM_Title"
-        public AudioClip clip;   // 对应的音频资源文件
+        public string soundName; // 音声の名前
+        public AudioClip clip;   // 音声ファイル
     }
 
     public List<SoundEffect> soundLibrary = new List<SoundEffect>();
     private Dictionary<string, AudioClip> audioDict = new Dictionary<string, AudioClip>();
 
+    // 音量設定
     [Header("Global Volume Settings")]
     [Range(0f, 1f)] public float bgmVolume = 0.5f;
     [Range(0f, 1f)] public float sfxVolume = 0.8f;
 
     void Awake()
     {
-        // 单例不灭守卫 / Singleton lifecycle preservation
+        // Singleton lifecycle preservation
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -39,22 +40,20 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // 1. 运行时动态动态给自己挂载两个喇叭，彻底免去手动摆放的麻烦
         // Auto-initialize separate hardware channels for background music and effects
         bgmSource = gameObject.AddComponent<AudioSource>();
         sfxSource = gameObject.AddComponent<AudioSource>();
 
-        // 配置背景音乐喇叭：必须默认循环，且不随 3D 距离衰减（2D 纯平播放）
+        // BGM 関連の設定
         bgmSource.loop = true;
         bgmSource.playOnAwake = false;
-        bgmSource.spatialBlend = 0f; // 0 代表绝对的 2D 纯平音效
+        bgmSource.spatialBlend = 0f;
 
-        // 配置音效喇叭
+        // SFX 関連の設定
         sfxSource.loop = false;
         sfxSource.playOnAwake = false;
         sfxSource.spatialBlend = 0f;
 
-        // 2. 将面板里的列表转化为快速查表的字典
         // Bake the list data into a high-performance hash dictionary
         foreach (var sound in soundLibrary)
         {
@@ -66,14 +65,15 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 【全局接口 1】播放背景音乐（会自动平滑切歌）
+    /// BGMを再生する（ループ再生）
     /// Global API to play background music on a permanent loop
     /// </summary>
     public void PlayBGM(string bgmName)
     {
         if (audioDict.TryGetValue(bgmName, out AudioClip clip))
         {
-            // 如果已经在放这首歌了，就不要打断重播
+            // 再生中かどうかをチェックして、同じ曲なら再生しない
+            // Check if the same BGM is already playing, and skip if so
             if (bgmSource.clip == clip && bgmSource.isPlaying) return;
 
             bgmSource.clip = clip;
@@ -82,12 +82,12 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"【AudioManager】未找到指定的背景音乐: {bgmName}");
+            Debug.LogWarning($"【AudioManager】Can't find the specified background music: {bgmName}");
         }
     }
 
     /// <summary>
-    /// 【全局接口 2】停止播放背景音乐
+    /// 再生停止（BGM）
     /// Stop background music instantly
     /// </summary>
     public void StopBGM()
@@ -96,25 +96,23 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 【全局接口 3】播放突发重叠音效（比如一万个方块同时连环殉爆）
+    /// SE再生
     /// Global API to fire rapid, overlapping sound effects via PlayOneShot
     /// </summary>
     public void PlaySFX(string sfxName)
     {
         if (audioDict.TryGetValue(sfxName, out AudioClip clip))
         {
-            // PlayOneShot 是独立游戏音频的灵魂！
-            // 它允许同一个喇叭在同一帧重叠播放几十个声音，而不会互相掐断掐死，非常适合殉爆效果！
             sfxSource.PlayOneShot(clip, sfxVolume);
         }
         else
         {
-            Debug.LogWarning($"【AudioManager】未找到指定的音效: {sfxName}");
+            Debug.LogWarning($"【AudioManager】Can't find the specified sound effect: {sfxName}");
         }
     }
 
     /// <summary>
-    /// 设置背景音乐音量，并即时刷新当前正在播放的BGM音量
+    /// BGM音量調整
     /// Set BGM volume and update the current playing audio source instantly
     /// </summary>
     public void SetBGMVolume(float value)
@@ -122,17 +120,16 @@ public class AudioManager : MonoBehaviour
         bgmVolume = Mathf.Clamp01(value);
         if (bgmSource != null)
         {
-            bgmSource.volume = bgmVolume; // 背景音乐要实时变大变小
+            bgmSource.volume = bgmVolume; // リアルタイムで調整
         }
     }
 
     /// <summary>
-    /// 设置全局音效音量系数
+    /// SFX音量調整
     /// Set SFX volume scale
     /// </summary>
     public void SetSFXVolume(float value)
     {
         sfxVolume = Mathf.Clamp01(value);
-        // 音效不需要实时刷喇叭音量，因为 PlayOneShot 在播出去的瞬间就已经固定了，下一发音效会自动应用新音量
     }
 }

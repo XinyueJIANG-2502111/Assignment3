@@ -61,7 +61,7 @@ public class TitleMenuManager : MonoBehaviour
     {
         if (introMaskObject != null)
         {
-            introMaskObject.SetActive(true); // 激活它，准备随时燃尽
+            introMaskObject.SetActive(true);
         }
 
         if (introDissolveMaterial != null)
@@ -75,7 +75,6 @@ public class TitleMenuManager : MonoBehaviour
                 elapsed += Time.deltaTime;
                 float progress = Mathf.Clamp01(elapsed / fadeOutDuration);
 
-                // 推进消融，黑色逐渐镂空吞噬整个主界面
                 introDissolveMaterial.SetFloat("_IntroProgress", progress);
                 yield return null;
             }
@@ -92,7 +91,11 @@ public class TitleMenuManager : MonoBehaviour
     }
 
 
-    // 【2. 点击 Settings 按钮】 / Open Settings Menu
+    /// <summary>
+    /// Buttons : Open/Close Settings, Open/Close Guide, Quit Game
+    /// Don't forget to assign these methods to the corresponding buttons in the Inspector!
+    /// </summary>
+    // Button: Open Settings Menu
     public void OpenSettings()
     {
         if (settingsMenuPanel != null)
@@ -101,7 +104,7 @@ public class TitleMenuManager : MonoBehaviour
         }
     }
 
-    // 【3. 点击关闭 Settings 按钮】 / Close Settings Menu
+    // Button: Close Settings Menu
     public void CloseSettings()
     {
         if (settingsMenuPanel != null)
@@ -110,7 +113,7 @@ public class TitleMenuManager : MonoBehaviour
         }
     }
 
-    // 【4. 次级按钮：点击展示游戏说明】 / Open How To Play Guide
+    // Button: Open How To Play Guide
     public void OpenGuide()
     {
         if (guidePanel != null)
@@ -119,7 +122,7 @@ public class TitleMenuManager : MonoBehaviour
         }
     }
 
-    // 【5. 点击关闭游戏说明】 / Close How To Play Guide
+    // Button: Close How To Play Guide
     public void CloseGuide()
     {
         if (guidePanel != null)
@@ -128,6 +131,7 @@ public class TitleMenuManager : MonoBehaviour
         }
     }
 
+    // Button: Quit Game
     public void QuitGame()
     {
     #if UNITY_EDITOR 
