@@ -104,6 +104,11 @@ public class GameUIManager : MonoBehaviour
     {
         if (pauseMenuPanel == null) return;
 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("Click"); 
+        }
+
         // 打开暂停面板 / Show the pause menu panel
         pauseMenuPanel.SetActive(true);
 
@@ -117,6 +122,11 @@ public class GameUIManager : MonoBehaviour
     {
         if (pauseMenuPanel == null) return;
 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("Cancel"); 
+        }
+
         // 隐藏暂停面板 / Hide the pause menu panel
         pauseMenuPanel.SetActive(false);
 
@@ -127,6 +137,10 @@ public class GameUIManager : MonoBehaviour
     // 【3. 选项二：重新开始】 / Option 2: Restart Game
     public void RestartGame()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("Click"); 
+        }
         // 极重要：重新加载场景前，必须手动把时间流速调回 1，否则新场景也会是静止的！
         // CRITICAL: Must reset timeScale to 1 before reloading, or the new scene will remain frozen
         Time.timeScale = 1f; 
@@ -139,6 +153,10 @@ public class GameUIManager : MonoBehaviour
     // 【4. 选项三：回到标题画面】 / Option 3: Return to Main Title
     public void GoToTitle()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("Click"); 
+        }
         // 同样需要恢复时间流速 / Restore time scale here as well
         Time.timeScale = 1f; 
 

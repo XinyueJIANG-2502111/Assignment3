@@ -1810,7 +1810,7 @@ MonoBehaviour:
   maxAllowedBlocks: 15
   blockPrefab: {fileID: 6754349648705263384, guid: c119ce123a507de47881a03d8d96c322, type: 3}
   spawnInterval: 1
-  gameDuration: 5
+  gameDuration: 3
   clickBufferRadius: 0.3
   iconPool:
   - {fileID: 21300000, guid: 63c7a9e27b8be5e40afaf45184b400ee, type: 3}

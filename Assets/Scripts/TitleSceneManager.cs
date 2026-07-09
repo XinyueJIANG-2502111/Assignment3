@@ -48,6 +48,9 @@ public class TitleMenuManager : MonoBehaviour
         if (isTransitioning) return;
         isTransitioning = true;
 
+        // play click sound effect
+        AudioManager.Instance.PlaySFX("Click");
+
         // 废弃原先的直接切场景：SceneManager.LoadScene(gameplaySceneName);
         // 替换为：启动协程，先放烟花，放完再切！
         // [New Lifecycle] Play the dissolve visual sequence before loading the scene

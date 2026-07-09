@@ -41,6 +41,10 @@ public class ResultScreenManager : MonoBehaviour
 
     public void RestartGame() 
     { 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("Click"); 
+        }
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
         //ScreenTransitionManager.Instance.PlayDissolveTransition("GameScene"); 
     }
