@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// This script is attached to the UI effect prefab. It automatically expands and fades out the effect, then destroys itself to save memory.
+/// This script is attached to the UI effect prefab. 
+/// It automatically expands and fades out the effect, then destroys itself to save memory.
 /// </summary>
 public class AutoDestroyEffect : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class AutoDestroyEffect : MonoBehaviour
         // Get UI Image component
         uiImage = GetComponent<Image>();
         
+        // ランダム色を割り当てる
         // Assign a random color
         Color randomColor = Color.HSVToRGB(Random.Range(0f, 1f), 0.9f, 1f);
         

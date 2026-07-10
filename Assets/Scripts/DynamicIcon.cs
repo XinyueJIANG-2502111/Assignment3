@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// This script is attached to a dynamic icon block prefab. It handles the setup of the icon's sprite and color, and manages the click blast effect that plays when the icon is clicked.
+/// </summary>
 public class DynamicIconBlock : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;

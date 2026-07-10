@@ -1,6 +1,5 @@
 using UnityEngine;
-using TMPro; // Required for modifying button text
-
+using TMPro;
 public class ResultScreenManager : MonoBehaviour
 {
     [Header("UI Text References")]

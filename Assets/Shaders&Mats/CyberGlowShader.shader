@@ -8,10 +8,9 @@ Shader "Custom/CyberGlowSprite"
         _GlowIntensity ("Glow Intensity", Float) = 4.0
         _DissolveEdgeWidth ("Edge Width", Range(0, 0.2)) = 0.05 
         
-        // 【新属性】描边的宽度与颜色
-        // [New Properties] Control outline thickness and shade
+        // Control outline thickness and shade
         _OutlineThickness ("Outline Thickness", Range(0, 0.02)) = 0.005
-        _OutlineColor ("Outline Color", Color) = (0, 0, 0, 1) // 默认纯黑防粘连
+        _OutlineColor ("Outline Color", Color) = (0, 0, 0, 1)
     }
 
     SubShader
@@ -50,7 +49,7 @@ Shader "Custom/CyberGlowSprite"
             };
 
             sampler2D _MainTex;
-            float4 _MainTex_TexelSize; // Unity 自动填充的贴图像素大小，用于精准计算偏移
+            float4 _MainTex_TexelSize;
             fixed4 _Color;
             float _Progress;
             float _GlowIntensity;
@@ -84,25 +83,23 @@ Shader "Custom/CyberGlowSprite"
 
             fixed4 frag(v2f IN) : SV_Target
             {
-                // 1. 基础采样与消融判定 / Base sampling and dissolve
+                // 1. Base sampling and dissolve
                 fixed4 texColor = tex2D(_MainTex, IN.texcoord);
                 float noise = GenerateNoise(IN.texcoord * 10.0);
                 float threshold = pow(_Progress, 1.2); 
                 clip(texColor.a * (noise - threshold));
 
-                // 2. 【核心新增】像素级上下左右四手采样判定法，强行捕捉图形边缘
-                // [Outline Calculation] Multi-sample neighboring pixels to detect contours
+                // 2. Multi-sample neighboring pixels to detect contours
                 float2 upAlpha    = tex2D(_MainTex, IN.texcoord + float2(0, _OutlineThickness)).a;
                 float2 downAlpha  = tex2D(_MainTex, IN.texcoord - float2(0, _OutlineThickness)).a;
                 float2 leftAlpha  = tex2D(_MainTex, IN.texcoord - float2(_OutlineThickness, 0)).a;
                 float2 rightAlpha = tex2D(_MainTex, IN.texcoord + float2(_OutlineThickness, 0)).a;
                 
-                // 如果当前像素透明度低，但四周有像素，说明这里是“外描边”区域
                 // If current pixel is fading but neighbors are solid, mark as outline
                 float outlineFactor = max(max(upAlpha, downAlpha), max(leftAlpha, rightAlpha)) - texColor.a;
                 outlineFactor = saturate(outlineFactor);
 
-                // 3. 计算消融烧灼火花
+                // 3. Calculate dissolve edge glow
                 float edgeCheck = noise - threshold;
                 float isEdge = 0.0;
                 if (edgeCheck > 0.0 && edgeCheck < _DissolveEdgeWidth)
@@ -111,17 +108,16 @@ Shader "Custom/CyberGlowSprite"
                 }
                 isEdge *= step(0.01, _Progress); 
 
-                // 4. 颜色混合体系 / Color blending pipeline
+                // 4. Color blending pipeline
                 float fade = 1.0 - _Progress;
                 fixed3 baseColor = texColor.rgb * IN.color.rgb * _GlowIntensity;
                 fixed3 edgeGlow = IN.color.rgb * _GlowIntensity * 3.0; 
                 
-                // 优先渲染内部色块，在边缘混合深色描边
                 // Lerp inside color with our protective dark outline
                 fixed3 finalRGB = lerp(baseColor, edgeGlow, isEdge);
                 finalRGB = lerp(finalRGB, _OutlineColor.rgb, outlineFactor) * fade;
                 
-                // 确保描边部分也能被渲染出来
+                // Final alpha blending with fade and outline factor
                 float finalAlpha = max(texColor.a, outlineFactor) * fade;
 
                 return fixed4(finalRGB * finalAlpha, finalAlpha);

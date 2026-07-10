@@ -40,7 +40,8 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // Auto-initialize separate hardware channels for background music and effects
+        // 初期化
+        // Initialize audio sources for BGM and SFX
         bgmSource = gameObject.AddComponent<AudioSource>();
         sfxSource = gameObject.AddComponent<AudioSource>();
 
@@ -54,6 +55,7 @@ public class AudioManager : MonoBehaviour
         sfxSource.playOnAwake = false;
         sfxSource.spatialBlend = 0f;
 
+        // リストデータを高性能ハッシュディクショナリにベイク処理する
         // Bake the list data into a high-performance hash dictionary
         foreach (var sound in soundLibrary)
         {

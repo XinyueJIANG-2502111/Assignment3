@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject blockPrefab;
     public float spawnInterval = 1.0f;
 
-    // 虚拟网格行列数，用于将图标完美错开，防止扎堆
+    // ランダム離散レイアウトのグリッド構成
     // Grid configuration for pseudo-random discrete layout
     private int gridRows = 10;
     private int gridCols = 7;
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         // Calculate secure boundaries using the current main camera
         CalculateSecureBoundaries();
 
-        // 2. 彻底解决扎堆：在安全范围内划分虚拟网格，并完成初始洗牌
+        // 仮想グリッドセルを分割し、最初にシャッフルする
         // Partition virtual grid cells and shuffle them initially
         GenerateGridPositions();
 
@@ -80,8 +80,7 @@ public class GameManager : MonoBehaviour
         Vector3 bottomLeft = mainCam.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 topRight = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
 
-        // 因为图标是 1:1 的正方形，尺寸十分稳定，左右上下预留 1.2f 的内边距绝对不会出界
-        // Consistent 1.2f padding keeps the square icons completely on-screen
+        // padding to ensure blocks don't spawn partially off-screen
         float paddingX = 1.2f; 
         float paddingY = 1.2f; 
 
@@ -91,7 +90,7 @@ public class GameManager : MonoBehaviour
         maxY = topRight.y - paddingY;
     }
 
-    // 在安全边界内划分虚拟网格，从根本上消灭堆叠卡死
+    // グリッドセルを構築し、そのシーケンスをシャッフルする
     // Construct grid cells and shuffle their sequence
     void GenerateGridPositions()
     {
@@ -118,7 +117,6 @@ public class GameManager : MonoBehaviour
     // Opening countdown locks core timers until completion
     IEnumerator OpeningSequenceRoutine()
     {
-        // 临时锁住 Update 里的倒计时和垃圾统计跑路
         isGameOver = true; 
 
         if (uiManager != null && uiManager.timerText != null)
@@ -138,37 +136,34 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.8f);
         }
 
-        // 倒计时结束，释放限制
         isGameOver = false; 
 
-        // 正式开始生成随机图标
+        // ゲーム開始後、アイテムの生成を開始する
+        // Start spawning icons after countdown
         StartCoroutine(SpawnRoutine());
     }
 
-    // 升级后的网格抖动生成协程
-    // Upgraded spawn routine featuring grid jittering and color randomizations
     IEnumerator SpawnRoutine()
     {
         while (!isGameOver)
         {
             yield return new WaitForSeconds(spawnInterval);
 
-            // 场上图标满了就挂起 / Pause if screen is full
+            // Pause if screen is full
             if (GetCurrentBlockCount() > maxAllowedBlocks) continue;
 
             if (blockPrefab != null && iconPool != null && iconPool.Length > 0)
             {
-                // 【真·纯随机】直接在动态计算的绝对安全边界（minX到maxX，minY到maxY）里狂野抽点！
-                // [True Random] Wildly pitch coordinates directly within secure screen boundaries
+                // 画面境界内でランダムな位置を生成する / Generate a random position within the secure boundaries
                 float pureRandomX = Random.Range(minX, maxX);
                 float pureRandomY = Random.Range(minY, maxY);
                 Vector3 finalSpawnPos = new Vector3(pureRandomX, pureRandomY, 0f);
 
-                // 实例化图标 / Instantiate the icon
+                // Instantiate the icon
                 GameObject newBlock = Instantiate(blockPrefab, finalSpawnPos, Quaternion.identity);
                 newBlock.transform.SetParent(this.transform); 
 
-                // 随机抽图标与色彩 / Randomize look and feel
+                // Randomize look and feel
                 Sprite randomIcon = iconPool[Random.Range(0, iconPool.Length)];
                 Color randomColor = Color.HSVToRGB(Random.Range(0f, 1f), 0.8f, 1f);
 
@@ -227,7 +222,7 @@ public class GameManager : MonoBehaviour
 
         if (hitCollider != null)
         {
-            // 确保点中的是带有全新 DynamicIconBlock 脚本的图标
+            // レイキャストが書き換えられたアイコン コンポーネントをキャッチすることを確認する
             // Verify that the raycast catches the rewritten icon component
             DynamicIconBlock block = hitCollider.GetComponent<DynamicIconBlock>();
             if (block != null)
@@ -291,33 +286,26 @@ public class GameManager : MonoBehaviour
         {
             float elapsed = 0f;
 
-            // 【第一阶段：电涌凝聚】
-            // 先把遮罩的 Y 轴缩放从 0 挤压到 0.02，形成一条横切屏幕的刺眼高亮霓虹线！
             // Phase 1: Condense into a sharp horizontal pixel line
             while (elapsed < transitionDuration * 0.4f)
             {
                 elapsed += Time.deltaTime;
                 float t = elapsed / (transitionDuration * 0.4f);
                 
-                // X轴满，Y轴微微张开一条缝
                 glitchMaskRect.localScale = new Vector3(1f, Mathf.Lerp(0f, 0.02f, t), 1f);
                 yield return null;
             }
 
-            // 稍微在死线状态定格 0.03 秒，配合一声音效最佳，传达断电卡死感
             // Micro-freeze to emphasize system failure
             yield return new WaitForSeconds(0.03f);
 
             elapsed = 0f;
-            // 【第二阶段：全面黑屏坍塌】
-            // 霓虹线瞬间纵向爆开（Y轴从 0.02 飙升到 1f），彻底吞噬整个游戏世界！
             // Phase 2: Snap expansion to swallow the entire screen in total darkness
             while (elapsed < transitionDuration * 0.6f)
             {
                 elapsed += Time.deltaTime;
                 float t = elapsed / (transitionDuration * 0.6f);
-                
-                // 使用 pow(t, 3) 产生一个非线性的突变式加速，啪的一下全黑
+
                 float curve = Mathf.Pow(t, 3);
                 glitchMaskRect.localScale = new Vector3(1f, Mathf.Lerp(0.02f, 1f, curve), 1f);
                 yield return null;
@@ -325,11 +313,12 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // 防御性保底：如果没有挂载 UI，就直接等 0.2 秒
+            // UIが見つからなかった場合、一定の時間後に直接シーン遷移する
+            // Fallback: If glitch mask is missing, wait a moment and load scene directly
             yield return new WaitForSeconds(transitionDuration);
         }
 
-        // 3. 此时整个屏幕已经是一片死黑，无缝载入新场景
+        // エフェクト再生完了後、リザルトシーンに遷移する
         // Screen is now pitch black. Load the results safely.
         SceneManager.LoadScene("ResultScene");
     }
